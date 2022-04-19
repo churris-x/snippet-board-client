@@ -1,9 +1,9 @@
-
+import { Color, Layout } from './constants';
 
 function App() {
 	return (
-		<div>
-			Hello world
+		<div style={{ minHeight: '100vh', display: 'flex' }}>
+			<div style={Layout.title}>Hello world</div>
 		</div>
 	);
 }
