@@ -3,7 +3,7 @@ import { Color } from './';
 export const Layout = {
 	margin: 16,
 	padding: 16,
-	screen: {
+	page: {
 		display: 'flex',
 		padding: 16,
 		backgroundColor: Color.backgroundColor,
