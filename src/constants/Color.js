@@ -10,6 +10,9 @@ export const Color = {
 	backgroundColor: 	'#FFFFFF',
 	text: 				'#000000',
 	button:				palette.mediumGreen,
+	buttonDisabled:		'#BBBBBB',
+	buttonHover:		palette.lightGreen,
+	buttonText: 		'#FFFFFF',
 	highlight: 			palette.mediumGreen,
 	danger: 			'crimson',
 };
