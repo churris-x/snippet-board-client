@@ -10,9 +10,11 @@ React frontend for my Snippet Board website.
 	- react-icons
 	- axios
 	- boring-avatars
+	- react-ace
 - Api's
 	- [carbon](https://carbon.now.sh/7a7ba518267028d7cd1f13dee837650d)
 	- [Carbon-API](https://github.com/cyberboysumanjay/Carbon-API)
+	- [Ace editor](https://github.com/securingsincity/react-ace)
 
 ---
 
