@@ -1,13 +1,8 @@
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import {
+	Avatar, Button, TextField, FormControlLabel,
+	Checkbox, Link, Grid, Box, Typography,
+} from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 
 export const LoginPage = () => {
 
@@ -72,7 +67,7 @@ export const LoginPage = () => {
 						</Link> */}
 					</Grid>
 					<Grid item>
-						<Link href="#" variant="body2">
+						<Link href="/signup" variant="body2">
 							{"Don't have an account? Sign up"}
 						</Link>
 					</Grid>
