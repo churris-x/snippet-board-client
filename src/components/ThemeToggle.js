@@ -1,7 +1,5 @@
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { IconButton, Box } from '@mui/material';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
 
 export const ThemeToggle = ({ toggle, mode }) => (
 	<Box sx={{
@@ -13,7 +11,7 @@ export const ThemeToggle = ({ toggle, mode }) => (
 	}}>
 		{mode} mode
 		<IconButton sx={{ ml: 1 }} onClick={toggle} color="inherit">
-			{mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+			{mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
 		</IconButton>
 	</Box>
 );
