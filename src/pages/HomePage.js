@@ -1,9 +1,10 @@
-import { Color, Layout } from '../constants';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 export const HomePage = () => {
 	return (
-		<div style={Layout.page}>
+		<div>
 			Welcome to the thing
-		</div>
+		</div >
 	);
 };
