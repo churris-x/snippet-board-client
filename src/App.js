@@ -1,12 +1,10 @@
 import { useMemo, useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
 
-import { HomePage } from './pages';
+import { HomePage, LoginPage } from './pages';
 import { ThemeToggle } from './components';
-
-const reduxIsDarkMode = true;
 
 function App() {
 	const [mode, setMode] = useState('light');
@@ -19,13 +17,12 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
-			<Container maxWidth="sm">
-				<ThemeToggle
-					mode={mode}
-					toggle={handleToggle}
-				/>
-				<HomePage />
-			</Container>
+			<ThemeToggle mode={mode} toggle={handleToggle} />
+
+			<Routes>
+				<Route exact path='/' element={<HomePage />} />
+				<Route path='/login' element={<LoginPage />} />
+			</Routes>
 		</ThemeProvider>
 	);
 }

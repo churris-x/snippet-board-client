@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 
 export const HomePage = () => {
 	return (
-		<div>
+		<Container maxWidth="sm">
 			Welcome to the thing
-		</div >
+		</Container>
 	);
 };
