@@ -5,12 +5,11 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 export const ThemeToggle = ({ toggle, mode }) => (
 	<Box sx={{
-		// display: 'flex',
-		// alignItems: 'flex-start',
-		// justifyContent: 'center',
+		display: 'flex',
+		alignItems: 'center',
 		color: 'text.primary',
 		borderRadius: 1,
-		padding: 3,
+		p: 1
 	}}>
 		{mode} mode
 		<IconButton sx={{ ml: 1 }} onClick={toggle} color="inherit">
