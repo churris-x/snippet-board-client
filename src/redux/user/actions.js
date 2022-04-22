@@ -1,7 +1,7 @@
 import axios from "axios";
 import { USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from '../types';
 import { API_URL } from '../../constants'
-// import {} from '../actions';
+import { setMessage } from '../actions';
 
 export const signup = ({ name, email, password }) => async dispatch => {
 	if (!name || !email || !password) return;
@@ -29,9 +29,11 @@ export const login = ({ email, password, remember }) => async dispatch => {
 
 		if (remember) localStorage.setItem("token", token);
 		dispatch({ type: USER_LOGIN, payload: token });
+
+		dispatch(setMessage('success', 'Logged in, welcome back!'));
 	} catch (error) {
 		console.log('Error: User login => ', error);
-		// dispatch({ type: USER_LOGIN_FAILED });
+		dispatch(setMessage('error', 'Failed to log in'));
 	}
 };
 export const logout = () => ({ type: USER_LOGOUT });

@@ -1,4 +1,4 @@
-import { CLOSE_MESSAGE, TOGGLE_MODE } from "../types";
+import { CLOSE_MESSAGE, SET_MESSAGE, TOGGLE_MODE } from "../types";
 
 const types = [
 	'error',
@@ -7,6 +7,11 @@ const types = [
 	'success',
 ];
 const modes = ['light', 'dark'];
+
+export const setMessage = (type, message) => ({
+	type: SET_MESSAGE,
+	payload: { type, message }
+});
 
 export const closeMessage = () => ({ type: CLOSE_MESSAGE });
 
