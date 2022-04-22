@@ -8,7 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { selectMode } from './redux/selectors'
 import { toggleMode } from './redux/actions';
 
-import { HomePage, LoginPage } from './pages';
+import { HomePage, LoginPage, SignupPage } from './pages';
 import { ThemeToggle, Message } from './components';
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
 			<Routes>
 				<Route exact path='/' element={<HomePage />} />
 				<Route path='/login' element={<LoginPage />} />
+				<Route path='/signup' element={<SignupPage />} />
 			</Routes>
 		</ThemeProvider>
 	);
