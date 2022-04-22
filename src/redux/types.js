@@ -7,6 +7,7 @@ export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
 // user
 export const USER_SIGNUP = 'USER_SIGNUP';
 export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
 // post
 export const POST_FETCH = 'POST_FETCH';

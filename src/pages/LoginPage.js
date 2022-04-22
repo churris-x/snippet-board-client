@@ -1,23 +1,31 @@
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	Avatar, Button, TextField, FormControlLabel,
 	Checkbox, Link, Grid, Box, Typography,
 } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
+import { login } from '../redux/actions';
+import { selectToken } from '../redux/selectors';
+import { Navigate } from 'react-router-dom';
+
+
 export const LoginPage = () => {
+	const dispatch = useDispatch();
+	const token = useSelector(selectToken);
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-
-		console.log({
-			email: data.get('email'),
-			password: data.get('password'),
-			remember: !!data.get('remember'),
-		});
+		const form = new FormData(event.currentTarget);
+		const data = {
+			email: form.get('email'),
+			password: form.get('password'),
+			remember: !!form.get('remember'),
+		};
+		dispatch(login(data))
 	};
 
-	return (
+	return (token ? <Navigate to='/' /> :
 		<Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 			<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
 				<LockOutlinedIcon />
