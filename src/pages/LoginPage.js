@@ -15,6 +15,8 @@ export const LoginPage = () => {
 	const token = useSelector(selectToken);
 	const isLoading = useSelector(selectIsLoading);
 
+
+
 	const handleSubmit = event => {
 		event.preventDefault();
 		const form = new FormData(event.currentTarget);
@@ -43,6 +45,9 @@ export const LoginPage = () => {
 					label="Email Address"
 					name="email"
 					autoComplete="email"
+					disabled={isLoading}
+					helperText="Incorrect entry"
+					// error={}
 					autoFocus
 				/>
 				<TextField
@@ -53,6 +58,7 @@ export const LoginPage = () => {
 					label="Password"
 					type="password"
 					id="password"
+					disabled={isLoading}
 					autoComplete="current-password"
 				/>
 				<FormControlLabel
@@ -60,6 +66,7 @@ export const LoginPage = () => {
 					label="Remember me"
 					value="remember"
 					name="remember"
+					disabled={isLoading}
 				/>
 				<Button
 					type="submit"

@@ -4,7 +4,7 @@ import {
 	Avatar, Button, TextField,
 	Link, Grid, Box, Typography,
 } from '@mui/material'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import BadgeIcon from '@mui/icons-material/Badge';
 
 import { signup } from '../redux/actions';
 import { selectIsLoading } from '../redux/selectors';
@@ -31,7 +31,7 @@ export const SignupPage = () => {
 	return (
 		<Box sx={{ m: 1, mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 			<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-				<LockOutlinedIcon />
+				<BadgeIcon />
 			</Avatar>
 			<Typography component="h1" variant="h5">
 				Sign up
@@ -41,6 +41,7 @@ export const SignupPage = () => {
 					margin="normal"
 					required
 					fullWidth
+					disabled={isLoading}
 					id="name"
 					label="Username"
 					name="name"
@@ -51,6 +52,7 @@ export const SignupPage = () => {
 					margin="normal"
 					required
 					fullWidth
+					disabled={isLoading}
 					id="email"
 					label="Email Address"
 					name="email"
@@ -60,6 +62,7 @@ export const SignupPage = () => {
 					margin="normal"
 					required
 					fullWidth
+					disabled={isLoading}
 					name="password"
 					label="Password"
 					type="password"
