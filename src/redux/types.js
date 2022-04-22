@@ -1,8 +1,10 @@
-// message
+// app
 export const LOADING_START = 'LOADING_START';
 export const LOADING_STOP = 'LOADING_STOP';
 export const SET_MESSAGE = 'SET_MESSAGE';
+export const CLOSE_MESSAGE = 'CLOSE_MESSAGE';
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
+export const TOGGLE_MODE = 'TOGGLE_MODE';
 
 // user
 export const USER_SIGNUP = 'USER_SIGNUP';

@@ -26,12 +26,12 @@ export const LoginPage = () => {
 	};
 
 	return (token ? <Navigate to='/' /> :
-		<Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+		<Box sx={{ m: 1, mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 			<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
 				<LockOutlinedIcon />
 			</Avatar>
 			<Typography component="h1" variant="h5">
-				Sign in
+				Login
 			</Typography>
 			<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 				<TextField
@@ -64,9 +64,10 @@ export const LoginPage = () => {
 					type="submit"
 					fullWidth
 					variant="contained"
+					disabled={false}
 					sx={{ mt: 3, mb: 2 }}
 				>
-					Sign In
+					Login
 				</Button>
 				<Grid container>
 					<Grid item xs>
