@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOADING_START, LOADING_STOP, USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from '../types';
+import { LOADING_START, LOADING_STOP, USER_AUTO_LOGIN, USER_AUTO_LOGIN_FAILED, USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from '../types';
 import { API_URL } from '../../constants'
 import { setMessage } from '../actions';
 
@@ -43,6 +43,23 @@ export const logout = () => ({ type: USER_LOGOUT });
 
 export const tokenLogin = () => async (dispatch, getState) => {
 	const { token } = getState().user;
-
 	if (!token) return;
+
+	dispatch({ type: LOADING_START });
+
+	try {
+		const response = await axios.get(
+			`${API_URL}/users/me`,
+			{ headers: { Authorization: `Bearer ${token}` } }
+		);
+
+		dispatch({ type: USER_AUTO_LOGIN, payload: response.data });
+		dispatch(setMessage('success', 'Logged in, welcome back!'));
+
+	} catch (error) {
+		console.log('Error: User auto login => ', error);
+		dispatch({ type: USER_AUTO_LOGIN_FAILED });
+	}
+	dispatch({ type: LOADING_STOP });
+
 };

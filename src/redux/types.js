@@ -9,6 +9,8 @@ export const TOGGLE_MODE = 'TOGGLE_MODE';
 // user
 export const USER_SIGNUP = 'USER_SIGNUP';
 export const USER_LOGIN = 'USER_LOGIN';
+export const USER_AUTO_LOGIN = 'USER_AUTO_LOGIN';
+export const USER_AUTO_LOGIN_FAILED = 'USER_AUTO_LOGIN_FAILED';
 export const USER_LOGOUT = 'USER_LOGOUT';
 
 // post
