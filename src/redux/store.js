@@ -2,12 +2,12 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 
 import { userReducer as user } from './user/reducer';
-// import { postReducer as post } from './post/reducer';
+import { postReducer as post } from './post/reducer';
 import { appReducer as app } from './app/reducer';
 
 const reducer = combineReducers({
 	user,
-	// post,
+	post,
 	app,
 });
 
