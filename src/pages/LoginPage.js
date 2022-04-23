@@ -79,15 +79,6 @@ export const LoginPage = () => {
 				>
 					Login
 				</Button>
-				<Grid container justifyContent='center'>
-					<Grid item>
-						<Link to="/signup">
-							<MuiLink variant="body2">
-								{"Don't have an account? Sign up"}
-							</MuiLink>
-						</Link>
-					</Grid>
-				</Grid>
 			</Box>
 		</Box>
 	);
