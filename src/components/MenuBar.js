@@ -4,11 +4,12 @@ import { useSelector } from 'react-redux';
 import { styled, alpha } from '@mui/material/styles';
 import {
 	AppBar, Box, Toolbar, IconButton, Typography, Menu,
-	Container, Avatar, Button, Tooltip, MenuItem, InputBase,
+	Container, Button, Tooltip, MenuItem, InputBase,
 } from '@mui/material';
 import { Menu as MenuIcon, Search as SearchIcon } from '@mui/icons-material';
 
 import { selectToken } from '../redux/selectors';
+import { Avatar } from './';
 
 const Search = styled('div')(({ theme }) => ({
 	position: 'relative',
@@ -105,11 +106,11 @@ export const MenuBar = () => {
 							sx={{ display: { xs: 'block', md: 'none' } }}
 						>
 							{pages.map((page) => (
-								<Link to={page.route} style={{
+								<Link key={page.route} to={page.route} style={{
 									textDecoration: 'none',
 									color: 'inherit',
 								}}>
-									<MenuItem key={page.route} onClick={handleCloseNavMenu}>
+									<MenuItem onClick={handleCloseNavMenu}>
 										<Typography textAlign="center">
 											{page.name}
 										</Typography>
@@ -120,12 +121,11 @@ export const MenuBar = () => {
 					</Box>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map((page) => (
-							<Link to={page.route} style={{
+							<Link key={page.route} to={page.route} style={{
 								textDecoration: 'none',
 								color: 'inherit'
 							}}>
 								<Button
-									key={page.route}
 									onClick={handleCloseNavMenu}
 									sx={{ my: 2, color: 'white', display: 'block' }}
 								>
@@ -175,21 +175,23 @@ export const MenuBar = () => {
 						</Box>
 						:
 						<>
-							<Link to={'/login'} style={{ textDecoration: 'none', color: 'inherit' }}>
-								<Button
-									sx={{ my: 2, mr: 2, color: 'white', display: 'block' }}
-								>
-									Login
-								</Button>
-							</Link>
-							<Link to={'/signup'} style={{ textDecoration: 'none' }}>
-								<Button
-									variant="outlined"
-									sx={{ my: 2, color: 'white', borderColor: 'white', display: 'block' }}
-								>
-									Sign up
-								</Button>
-							</Link>
+							<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+								<Link to={'/login'} style={{ textDecoration: 'none', color: 'inherit' }}>
+									<Button
+										sx={{ my: 2, mr: 2, color: 'white', display: 'block' }}
+									>
+										Login
+									</Button>
+								</Link>
+								<Link to={'/signup'} style={{ textDecoration: 'none' }}>
+									<Button
+										variant="outlined"
+										sx={{ my: 2, color: 'white', borderColor: 'white', display: 'block' }}
+									>
+										Sign up
+									</Button>
+								</Link>
+							</Box>
 						</>
 					}
 				</Toolbar>
