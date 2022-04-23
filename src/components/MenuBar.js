@@ -1,55 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { styled, alpha } from '@mui/material/styles';
+
 import {
-	AppBar, Box, Toolbar, IconButton, Typography, Menu,
-	Container, Button, Tooltip, MenuItem, InputBase,
+	AppBar, Box, Toolbar, IconButton, Typography,
+	Menu, Container, Button, Tooltip, MenuItem,
 } from '@mui/material';
-import { Menu as MenuIcon, Search as SearchIcon } from '@mui/icons-material';
+import {
+	Menu as MenuIcon,
+	MoreVertOutlined as MoreVertOutlinedIcon,
+} from '@mui/icons-material';
 
 import { selectToken } from '../redux/selectors';
-import { Avatar } from './';
-
-const Search = styled('div')(({ theme }) => ({
-	position: 'relative',
-	borderRadius: theme.shape.borderRadius,
-	backgroundColor: alpha(theme.palette.common.white, 0.15),
-	'&:hover': {
-		backgroundColor: alpha(theme.palette.common.white, 0.25),
-	},
-	marginRight: theme.spacing(2),
-	marginLeft: 0,
-	width: '100%',
-	[theme.breakpoints.up('sm')]: {
-		marginLeft: theme.spacing(3),
-		width: 'auto',
-	},
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-	padding: theme.spacing(0, 2),
-	height: '100%',
-	position: 'absolute',
-	pointerEvents: 'none',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-	color: 'inherit',
-	'& .MuiInputBase-input': {
-		padding: theme.spacing(1, 1, 1, 0),
-		// vertical padding + font size from searchIcon
-		paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-		transition: theme.transitions.create('width'),
-		width: '100%',
-		[theme.breakpoints.up('md')]: {
-			width: '20ch',
-		},
-	},
-}));
+import { Avatar, SearchBar } from './';
 
 const pages = [
 	{ name: 'Home', route: '/' },
@@ -57,20 +20,28 @@ const pages = [
 ];
 const settings = [
 	'Profile',
-	'Dashboard',
+	'darkmode',
 	'Logout',
+];
+
+const auths = [
+	{ name: 'Login', route: '/login' },
+	{ name: 'Sign up', route: '/signup' },
 ];
 
 export const MenuBar = () => {
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const [anchorElUser, setAnchorElUser] = useState(null);
+	const [anchorElAuth, setAnchorElAuth] = useState(null);
 
 	const token = useSelector(selectToken);
 
 	const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
 	const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
+	const handleOpenAuthMenu = (event) => setAnchorElAuth(event.currentTarget);
 	const handleCloseNavMenu = () => setAnchorElNav(null);
 	const handleCloseUserMenu = () => setAnchorElUser(null);
+	const handleCloseAuthMenu = () => setAnchorElAuth(null);
 
 	return (
 		<AppBar position="static">
@@ -105,7 +76,7 @@ export const MenuBar = () => {
 							onClose={handleCloseNavMenu}
 							sx={{ display: { xs: 'block', md: 'none' } }}
 						>
-							{pages.map((page) => (
+							{pages.map(page => (
 								<Link key={page.route} to={page.route} style={{
 									textDecoration: 'none',
 									color: 'inherit',
@@ -120,7 +91,7 @@ export const MenuBar = () => {
 						</Menu>
 					</Box>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-						{pages.map((page) => (
+						{pages.map(page => (
 							<Link key={page.route} to={page.route} style={{
 								textDecoration: 'none',
 								color: 'inherit'
@@ -134,15 +105,7 @@ export const MenuBar = () => {
 							</Link>
 						))}
 					</Box>
-					<Search>
-						<SearchIconWrapper>
-							<SearchIcon />
-						</SearchIconWrapper>
-						<StyledInputBase
-							placeholder="Search…"
-							inputProps={{ 'aria-label': 'search' }}
-						/>
-					</Search>
+					<SearchBar />
 					{token ?
 						<Box sx={{ flexGrow: 0 }}>
 							<Tooltip title="Open settings">
@@ -154,19 +117,13 @@ export const MenuBar = () => {
 								sx={{ mt: '45px' }}
 								id="menu-appbar"
 								anchorEl={anchorElUser}
-								anchorOrigin={{
-									vertical: 'top',
-									horizontal: 'right',
-								}}
+								anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 								keepMounted
-								transformOrigin={{
-									vertical: 'top',
-									horizontal: 'right',
-								}}
+								transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 								open={Boolean(anchorElUser)}
 								onClose={handleCloseUserMenu}
 							>
-								{settings.map((setting) => (
+								{settings.map(setting => (
 									<MenuItem key={setting} onClick={handleCloseUserMenu}>
 										<Typography textAlign="center">{setting}</Typography>
 									</MenuItem>
@@ -191,6 +148,31 @@ export const MenuBar = () => {
 										Sign up
 									</Button>
 								</Link>
+							</Box>
+							<Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+								<Tooltip title="Account options">
+									<IconButton size="large" onClick={handleOpenAuthMenu} sx={{ color: 'inherit' }}>
+										<MoreVertOutlinedIcon />
+									</IconButton>
+								</Tooltip>
+								<Menu
+									sx={{ mt: '45px' }}
+									id="menu-appbar"
+									anchorEl={anchorElAuth}
+									anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+									keepMounted
+									transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+									open={Boolean(anchorElAuth)}
+									onClose={handleCloseAuthMenu}
+								>
+									{auths.map(auth => (
+										<Link key={auth.route} to={auth.route} style={{ textDecoration: 'none', color: 'inherit' }}>
+											<MenuItem onClick={handleCloseAuthMenu}>
+												<Typography textAlign="center">{auth.name}</Typography>
+											</MenuItem>
+										</Link>
+									))}
+								</Menu>
 							</Box>
 						</>
 					}
