@@ -13,6 +13,7 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 
 // post
 export const POST_FETCH = 'POST_FETCH';
+export const POST_FETCH_USER = 'POST_FETCH_USER';
 export const POST_FETCH_BY_ID = 'POST_FETCH_BY_ID';
 export const POST_CLEAR_BY_ID = 'POST_CLEAR_BY_ID';
 export const POST_ADD_STAR = 'POST_ADD_STAR';
