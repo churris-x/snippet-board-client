@@ -8,7 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { selectMode } from './redux/selectors'
 
 import { HomePage, LoginPage, SignupPage } from './pages';
-import { ThemeToggle, Message } from './components';
+import { ThemeToggle, Message, MenuBar } from './components';
 
 function App() {
 	const mode = useSelector(selectMode);
@@ -17,7 +17,6 @@ function App() {
 		palette: {
 			mode,
 			...(mode === 'light' ? {
-				// palette values for light mode
 				primary: {
 					light: '#6fbf73',
 					main: '#4caf50',
@@ -51,6 +50,7 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 
+			<MenuBar />
 			<ThemeToggle />
 			<Message />
 
