@@ -1,10 +1,6 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-	Avatar, Button, TextField,
-	Grid, Box, Typography,
-	Link as MuiLink
-} from '@mui/material'
+import { Avatar, Button, TextField, Box, Typography } from '@mui/material'
 import BadgeIcon from '@mui/icons-material/Badge';
 
 import { signup } from '../redux/actions';

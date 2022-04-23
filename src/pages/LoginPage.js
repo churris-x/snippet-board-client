@@ -1,23 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	Avatar, Button, TextField, FormControlLabel,
-	Checkbox, Grid, Box, Typography,
-	Link as MuiLink
+	Avatar, Button, TextField, Box,
+	FormControlLabel, Checkbox, Typography,
 } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { login } from '../redux/actions';
 import { selectIsLoading, selectToken } from '../redux/selectors';
-import { Navigate } from 'react-router-dom';
 
 
 export const LoginPage = () => {
 	const dispatch = useDispatch();
 	const token = useSelector(selectToken);
 	const isLoading = useSelector(selectIsLoading);
-
-
 
 	const handleSubmit = event => {
 		event.preventDefault();
@@ -48,8 +44,8 @@ export const LoginPage = () => {
 					name="email"
 					autoComplete="email"
 					disabled={isLoading}
-					helperText="Incorrect entry"
-					// error={}
+					// helperText="Incorrect entry"
+					// error
 					autoFocus
 				/>
 				<TextField
