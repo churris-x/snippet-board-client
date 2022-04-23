@@ -15,7 +15,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
 			return { ...state, ...payload };
 		case USER_LOGOUT:
 			localStorage.removeItem("token");
-			return { ...state, token: '' };
+			return { ...state, ...initialState, token: '' };
 		default:
 			return state;
 	}

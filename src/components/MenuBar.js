@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
 	AppBar, Box, Toolbar, IconButton, Typography,
@@ -13,6 +13,7 @@ import {
 
 import { selectToken } from '../redux/selectors';
 import { Avatar, SearchBar } from './';
+import { logout } from '../redux/actions';
 
 const pages = [
 	{ name: 'Home', route: '/' },
@@ -34,6 +35,7 @@ export const MenuBar = () => {
 	const [anchorElUser, setAnchorElUser] = useState(null);
 	const [anchorElAuth, setAnchorElAuth] = useState(null);
 
+	const dispatch = useDispatch();
 	const token = useSelector(selectToken);
 
 	const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
@@ -123,11 +125,12 @@ export const MenuBar = () => {
 								open={Boolean(anchorElUser)}
 								onClose={handleCloseUserMenu}
 							>
-								{settings.map(setting => (
-									<MenuItem key={setting} onClick={handleCloseUserMenu}>
-										<Typography textAlign="center">{setting}</Typography>
-									</MenuItem>
-								))}
+								<MenuItem onClick={handleCloseUserMenu}>
+									<Typography textAlign="center">Profile</Typography>
+								</MenuItem>
+								<MenuItem onClick={() => { handleCloseUserMenu(); dispatch(logout()) }}>
+									<Typography textAlign="center">Logout</Typography>
+								</MenuItem>
 							</Menu>
 						</Box>
 						:
