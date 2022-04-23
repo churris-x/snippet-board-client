@@ -15,7 +15,7 @@ export const Message = () => {
 			open={snackOpen}
 			onClose={handleClose}
 			autoHideDuration={4000}
-			anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+		// anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
 		>
 			<Alert onClose={handleClose} severity={type} sx={{ width: '100%', boxShadow: 2 }}>
 				{message}

@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { styled, alpha } from '@mui/material/styles';
 import {
 	AppBar, Box, Toolbar, IconButton, Typography, Menu,
 	Container, Avatar, Button, Tooltip, MenuItem, InputBase,
 } from '@mui/material';
 import { Menu as MenuIcon, Search as SearchIcon } from '@mui/icons-material';
+
+import { selectToken } from '../redux/selectors';
 
 const Search = styled('div')(({ theme }) => ({
 	position: 'relative',
@@ -49,8 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const pages = [
 	{ name: 'Home', route: '/' },
-	{ name: 'Login', route: '/login' },
-	{ name: 'Sign up', route: '/signup' },
+	{ name: 'Snippets', route: '/snippets' },
 ];
 const settings = [
 	'Profile',
@@ -61,6 +63,8 @@ const settings = [
 export const MenuBar = () => {
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const [anchorElUser, setAnchorElUser] = useState(null);
+
+	const token = useSelector(selectToken);
 
 	const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
 	const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
@@ -139,35 +143,55 @@ export const MenuBar = () => {
 							inputProps={{ 'aria-label': 'search' }}
 						/>
 					</Search>
-					<Box sx={{ flexGrow: 0 }}>
-						<Tooltip title="Open settings">
-							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-								<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-							</IconButton>
-						</Tooltip>
-						<Menu
-							sx={{ mt: '45px' }}
-							id="menu-appbar"
-							anchorEl={anchorElUser}
-							anchorOrigin={{
-								vertical: 'top',
-								horizontal: 'right',
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: 'top',
-								horizontal: 'right',
-							}}
-							open={Boolean(anchorElUser)}
-							onClose={handleCloseUserMenu}
-						>
-							{settings.map((setting) => (
-								<MenuItem key={setting} onClick={handleCloseUserMenu}>
-									<Typography textAlign="center">{setting}</Typography>
-								</MenuItem>
-							))}
-						</Menu>
-					</Box>
+					{token ?
+						<Box sx={{ flexGrow: 0 }}>
+							<Tooltip title="Open settings">
+								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+									<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+								</IconButton>
+							</Tooltip>
+							<Menu
+								sx={{ mt: '45px' }}
+								id="menu-appbar"
+								anchorEl={anchorElUser}
+								anchorOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								open={Boolean(anchorElUser)}
+								onClose={handleCloseUserMenu}
+							>
+								{settings.map((setting) => (
+									<MenuItem key={setting} onClick={handleCloseUserMenu}>
+										<Typography textAlign="center">{setting}</Typography>
+									</MenuItem>
+								))}
+							</Menu>
+						</Box>
+						:
+						<>
+							<Link to={'/login'} style={{ textDecoration: 'none', color: 'inherit' }}>
+								<Button
+									sx={{ my: 2, mr: 2, color: 'white', display: 'block' }}
+								>
+									Login
+								</Button>
+							</Link>
+							<Link to={'/signup'} style={{ textDecoration: 'none' }}>
+								<Button
+									variant="outlined"
+									sx={{ my: 2, color: 'white', borderColor: 'white', display: 'block' }}
+								>
+									Sign up
+								</Button>
+							</Link>
+						</>
+					}
 				</Toolbar>
 			</Container>
 		</AppBar>
