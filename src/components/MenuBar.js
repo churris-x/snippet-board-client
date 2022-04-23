@@ -5,8 +5,7 @@ import {
 	AppBar, Box, Toolbar, IconButton, Typography, Menu,
 	Container, Avatar, Button, Tooltip, MenuItem, InputBase,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+import { Menu as MenuIcon, Search as SearchIcon } from '@mui/icons-material';
 
 const Search = styled('div')(({ theme }) => ({
 	position: 'relative',
@@ -48,32 +47,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	},
 }));
 
-
 const pages = [
 	{ name: 'Home', route: '/' },
 	{ name: 'Login', route: '/login' },
 	{ name: 'Sign up', route: '/signup' },
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [
+	'Profile',
+	'Dashboard',
+	'Logout',
+];
 
 export const MenuBar = () => {
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const [anchorElUser, setAnchorElUser] = useState(null);
 
-	const handleOpenNavMenu = (event) => {
-		setAnchorElNav(event.currentTarget);
-	};
-	const handleOpenUserMenu = (event) => {
-		setAnchorElUser(event.currentTarget);
-	};
-
-	const handleCloseNavMenu = () => {
-		setAnchorElNav(null);
-	};
-
-	const handleCloseUserMenu = () => {
-		setAnchorElUser(null);
-	};
+	const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+	const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
+	const handleCloseNavMenu = () => setAnchorElNav(null);
+	const handleCloseUserMenu = () => setAnchorElUser(null);
 
 	return (
 		<AppBar position="static">
@@ -101,49 +93,41 @@ export const MenuBar = () => {
 						<Menu
 							id="menu-appbar"
 							anchorEl={anchorElNav}
-							anchorOrigin={{
-								vertical: 'bottom',
-								horizontal: 'left',
-							}}
+							anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
 							keepMounted
-							transformOrigin={{
-								vertical: 'top',
-								horizontal: 'left',
-							}}
+							transformOrigin={{ vertical: 'top', horizontal: 'left' }}
 							open={Boolean(anchorElNav)}
 							onClose={handleCloseNavMenu}
-							sx={{
-								display: { xs: 'block', md: 'none' },
-							}}
+							sx={{ display: { xs: 'block', md: 'none' } }}
 						>
 							{pages.map((page) => (
-								<MenuItem key={page.route} onClick={handleCloseNavMenu}>
-									<Typography textAlign="center">
-										<Link to={page.route} style={{
-											textDecoration: 'none',
-											color: 'inherit'
-										}}>
+								<Link to={page.route} style={{
+									textDecoration: 'none',
+									color: 'inherit',
+								}}>
+									<MenuItem key={page.route} onClick={handleCloseNavMenu}>
+										<Typography textAlign="center">
 											{page.name}
-										</Link>
-									</Typography>
-								</MenuItem>
+										</Typography>
+									</MenuItem>
+								</Link>
 							))}
 						</Menu>
 					</Box>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map((page) => (
-							<Button
-								key={page.route}
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: 'white', display: 'block' }}
-							>
-								<Link to={page.route} style={{
-									textDecoration: 'none',
-									color: 'inherit'
-								}}>
+							<Link to={page.route} style={{
+								textDecoration: 'none',
+								color: 'inherit'
+							}}>
+								<Button
+									key={page.route}
+									onClick={handleCloseNavMenu}
+									sx={{ my: 2, color: 'white', display: 'block' }}
+								>
 									{page.name}
-								</Link>
-							</Button>
+								</Button>
+							</Link>
 						))}
 					</Box>
 					<Search>

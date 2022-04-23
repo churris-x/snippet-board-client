@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	Avatar, Button, TextField, FormControlLabel,
-	Checkbox, Link, Grid, Box, Typography,
+	Checkbox, Grid, Box, Typography,
+	Link as MuiLink
 } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
@@ -79,8 +81,10 @@ export const LoginPage = () => {
 				</Button>
 				<Grid container justifyContent='center'>
 					<Grid item>
-						<Link href="/signup" variant="body2">
-							{"Don't have an account? Sign up"}
+						<Link to="/signup">
+							<MuiLink variant="body2">
+								{"Don't have an account? Sign up"}
+							</MuiLink>
 						</Link>
 					</Grid>
 				</Grid>

@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	Avatar, Button, TextField,
-	Link, Grid, Box, Typography,
+	Grid, Box, Typography,
+	Link as MuiLink
 } from '@mui/material'
 import BadgeIcon from '@mui/icons-material/Badge';
 
@@ -80,8 +81,10 @@ export const SignupPage = () => {
 				</Button>
 				<Grid container justifyContent='center'>
 					<Grid item>
-						<Link href="/login" variant="body2">
-							Already have an account? Login
+						<Link to="/login" >
+							<MuiLink variant="body2">
+								Already have an account? Login
+							</MuiLink>
 						</Link>
 					</Grid>
 				</Grid>
