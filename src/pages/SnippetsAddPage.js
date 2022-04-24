@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Container, Typography, Box, TextField, Paper } from '@mui/material';
 
@@ -8,23 +9,27 @@ export const SnippetsAddPage = () => {
 	const dispatch = useDispatch();
 	const isLoading = useSelector(selectIsLoading);
 
-	const handleSubmit = () => {
-		const data = {
-			title: 'Teste n1',
-			// body: 'it was here that king louis the XVXXIIII realized...',
-		};
+	const [state, setState] = useState({
+		title: '',
+		body: '',
+		syntax: '',
+	});
 
-		dispatch(createPost(data));
-	}
+	const handleSubmit = () => dispatch(createPost(state));
+	const handleTitle = event => setState({ ...state, title: event.target.value });
+	const handleBody = event => setState({ ...state, body: event.target.value });
+	// const handleSyntax
 
 	return (
-		<Container maxWidth="sm" height='100%'>
+		<Container maxWidth="sm">
 			<Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
 				<Typography component="h1" variant="h4">
 					Create snippet
 				</Typography>
 				<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 					<TextField
+						value={state.title}
+						onChange={handleTitle}
 						margin="normal"
 						required
 						fullWidth
@@ -35,6 +40,9 @@ export const SnippetsAddPage = () => {
 						autoFocus
 					/>
 					<TextField
+						value={state.body}
+						onChange={handleBody}
+						minRows={5}
 						margin="normal"
 						required
 						fullWidth
