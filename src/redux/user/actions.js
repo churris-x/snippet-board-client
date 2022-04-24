@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOADING_START, LOADING_STOP, USER_AUTO_LOGIN, USER_AUTO_LOGIN_FAILED, USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from '../types';
+import { LOADING_START, LOADING_STOP, POST_FETCH_USER, USER_AUTO_LOGIN, USER_AUTO_LOGIN_FAILED, USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from '../types';
 import { API_URL } from '../../constants'
 import { setMessage } from '../actions';
 
@@ -39,7 +39,11 @@ export const login = ({ email, password, remember }) => async dispatch => {
 	}
 	dispatch({ type: LOADING_STOP });
 };
-export const logout = () => ({ type: USER_LOGOUT });
+
+export const logout = () => dispatch => {
+	dispatch({ type: USER_LOGOUT });
+	dispatch({ type: POST_FETCH_USER, payload: [] });
+};
 
 export const tokenLogin = () => async (dispatch, getState) => {
 	const { token } = getState().user;
