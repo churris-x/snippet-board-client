@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -36,6 +36,7 @@ export const MenuBar = () => {
 	const [anchorElUser, setAnchorElUser] = useState(null);
 	const [anchorElAuth, setAnchorElAuth] = useState(null);
 
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const token = useSelector(selectToken);
 
@@ -80,32 +81,26 @@ export const MenuBar = () => {
 							sx={{ display: { xs: 'block', md: 'none' } }}
 						>
 							{pages.map(page => (
-								<Link key={page.route} to={page.route} style={{
-									textDecoration: 'none',
-									color: 'inherit',
-								}}>
-									<MenuItem onClick={handleCloseNavMenu}>
-										<Typography textAlign="center">
-											{page.name}
-										</Typography>
-									</MenuItem>
-								</Link>
+
+								<MenuItem key={page.route} onClick={() => { navigate(page.route); handleCloseNavMenu() }}>
+									<Typography textAlign="center">
+										{page.name}
+									</Typography>
+								</MenuItem>
+
 							))}
 						</Menu>
 					</Box>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map(page => (
-							<Link key={page.route} to={page.route} style={{
-								textDecoration: 'none',
-								color: 'inherit'
-							}}>
-								<Button
-									onClick={handleCloseNavMenu}
-									sx={{ my: 2, color: 'white', display: 'block' }}
-								>
-									{page.name}
-								</Button>
-							</Link>
+
+							<Button
+								key={page.route}
+								onClick={() => { navigate(page.route); handleCloseNavMenu() }}
+								sx={{ my: 2, color: 'white', display: 'block' }}
+							>
+								{page.name}
+							</Button>
 						))}
 					</Box>
 					<SearchBar />
@@ -137,21 +132,19 @@ export const MenuBar = () => {
 						:
 						<>
 							<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-								<Link to={'/login'} style={{ textDecoration: 'none', color: 'inherit' }}>
-									<Button
-										sx={{ my: 2, mr: 2, color: 'white', display: 'block' }}
-									>
-										Login
-									</Button>
-								</Link>
-								<Link to={'/signup'} style={{ textDecoration: 'none' }}>
-									<Button
-										variant="outlined"
-										sx={{ my: 2, color: 'white', borderColor: 'white', display: 'block' }}
-									>
-										Sign up
-									</Button>
-								</Link>
+								<Button
+									sx={{ my: 2, mr: 2, color: 'white', display: 'block' }}
+									onClick={() => navigate('/login')}
+								>
+									Login
+								</Button>
+								<Button
+									variant="outlined"
+									sx={{ my: 2, color: 'white', borderColor: 'white', display: 'block' }}
+									onClick={() => navigate('/signup')}
+								>
+									Sign up
+								</Button>
 							</Box>
 							<Box sx={{ display: { xs: 'flex', md: 'none' } }}>
 								<Tooltip title="Account options">
@@ -170,11 +163,9 @@ export const MenuBar = () => {
 									onClose={handleCloseAuthMenu}
 								>
 									{auths.map(auth => (
-										<Link key={auth.route} to={auth.route} style={{ textDecoration: 'none', color: 'inherit' }}>
-											<MenuItem onClick={handleCloseAuthMenu}>
-												<Typography textAlign="center">{auth.name}</Typography>
-											</MenuItem>
-										</Link>
+										<MenuItem key={auth.route} onClick={() => { navigate(auth.route); handleCloseAuthMenu() }}>
+											<Typography textAlign="center">{auth.name}</Typography>
+										</MenuItem>
 									))}
 								</Menu>
 							</Box>
