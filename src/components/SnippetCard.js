@@ -33,7 +33,7 @@ export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
 	const handleExpandClick = () => setExpanded(!expanded);
 
 	return (
-		<Card sx={{ maxWidth: 345 }}>
+		<Card sx={{ width: 345 }}>
 			<CardHeader
 				avatar={user.id === userId ? null :
 					<Avatar sx={{ bgcolor: red[500] }} aria-label="user" />
@@ -65,9 +65,7 @@ export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
 			<Collapse in={expanded} timeout="auto" unmountOnExit>
 				<CardContent>
 					<Typography variant="body2" color="text.secondary">
-						This impressive paella is a perfect party dish and a fun meal to cook
-						together with your guests. Add 1 cup of frozen peas along with the mussels,
-						if you like.
+						Description goes here along with tags
 					</Typography>
 				</CardContent>
 			</Collapse>
