@@ -26,7 +26,7 @@ export const LoginPage = () => {
 		dispatch(login(data))
 	};
 
-	return (token ? <Navigate to='/' /> :
+	return (token ? <Navigate to='/snippets/user' /> :
 		<Box sx={{ m: 1, mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 			<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
 				<LockOutlinedIcon />

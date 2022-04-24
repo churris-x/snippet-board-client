@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
+import { Container, CircularProgress } from '@mui/material';
 
-import { selectUserPosts } from '../redux/selectors';
+import { selectIsLoading, selectUserPosts } from '../redux/selectors';
 import { fetchUserPosts } from '../redux/actions';
 
-export const SnippetsPage = () => {
+export const UserSnippetsPage = () => {
 	const dispatch = useDispatch();
+	const isLoading = useSelector(selectIsLoading);
 	const posts = useSelector(selectUserPosts);
 
 	useEffect(() => {
@@ -17,7 +17,9 @@ export const SnippetsPage = () => {
 
 	return (
 		<Container maxWidth="sm">
-			{posts.length ? 'Snippets!' : 'Couldn\'t find any snippets!'}
+			{isLoading ? <CircularProgress /> : !posts.length ? 'Couldn\'t find any snippets!' :
+				'Snippets!'
+			}
 		</Container>
 	);
 };

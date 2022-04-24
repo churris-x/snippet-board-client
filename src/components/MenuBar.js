@@ -17,7 +17,8 @@ import { logout } from '../redux/actions';
 
 const pages = [
 	{ name: 'Home', route: '/' },
-	{ name: 'Snippets', route: '/snippets' },
+	// { name: 'Snippets', route: '/snippets' },
+	{ name: 'My Snippets', route: '/snippets/user' },
 ];
 const settings = [
 	'Profile',
