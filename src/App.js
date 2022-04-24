@@ -7,7 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { selectMode } from './redux/selectors'
 import { tokenLogin } from './redux/actions';
 
-import { HomePage, LoginPage, SignupPage, SnippetsPage } from './pages';
+import { HomePage, LoginPage, SignupPage, SnippetsAddPage, SnippetsPage } from './pages';
 import { ThemeToggle, Message, MenuBar } from './components';
 import { light, dark } from './constants';
 
@@ -37,6 +37,7 @@ function App() {
 			<Routes>
 				<Route exact path='/' element={<HomePage />} />
 				<Route path='/snippets' element={<SnippetsPage />} />
+				<Route path='/snippets/add' element={<SnippetsAddPage />} />
 				<Route path='/login' element={<LoginPage />} />
 				<Route path='/signup' element={<SignupPage />} />
 			</Routes>
