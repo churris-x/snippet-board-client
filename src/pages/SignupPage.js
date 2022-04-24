@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button, TextField, Box, Typography } from '@mui/material'
 import BadgeIcon from '@mui/icons-material/Badge';
@@ -8,7 +7,6 @@ import { selectIsLoading } from '../redux/selectors';
 
 export const SignupPage = () => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	const isLoading = useSelector(selectIsLoading);
 
@@ -20,9 +18,7 @@ export const SignupPage = () => {
 			email: form.get('email'),
 			password: form.get('password'),
 		};
-		console.table(data);
 		dispatch(signup(data));
-		if (!isLoading) navigate('/');
 	};
 
 	return (

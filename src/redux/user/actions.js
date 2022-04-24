@@ -4,7 +4,10 @@ import { API_URL } from '../../constants'
 import { setMessage } from '../actions';
 
 export const signup = ({ name, email, password }) => async dispatch => {
-	if (!name || !email || !password) return;
+	if (!name || !email || !password) return dispatch(setMessage(
+		'error',
+		'Missign required field!'
+	));
 
 	dispatch({ type: LOADING_START });
 
@@ -21,7 +24,10 @@ export const signup = ({ name, email, password }) => async dispatch => {
 };
 
 export const login = ({ email, password, remember }) => async dispatch => {
-	if (!email || !password) return;
+	if (!email || !password) return dispatch(setMessage(
+		'error',
+		'User name and password required!'
+	));
 
 	dispatch({ type: LOADING_START });
 
