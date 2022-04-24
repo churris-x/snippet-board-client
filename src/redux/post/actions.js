@@ -41,7 +41,7 @@ export const createPost = post => async (dispatch, getState) => {
 			{ title, body, syntax },
 			{ headers: { Authorization: `Bearer ${token}` } }
 		);
-		dispatch({ type: POST_CREATE });
+		dispatch({ type: POST_CREATE, payload: response.data });
 		dispatch(setMessage('success', 'Created new snippet!'));
 	} catch (error) {
 		console.log('Error: User login => ', error);
