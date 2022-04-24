@@ -15,6 +15,7 @@ export const Color = {
 	buttonText: '#FFFFFF',
 	highlight: palette.mediumGreen,
 	danger: 'crimson',
+	star: '#EAC54F',
 };
 
 export const light = {

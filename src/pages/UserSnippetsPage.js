@@ -19,7 +19,7 @@ export const UserSnippetsPage = () => {
 
 	return (
 		<Container sx={{ flexDirection: 'row' }}>
-			{isLoading ? <CircularProgress /> : !posts.length ? 'Couldn\'t find any snippets!' :
+			{isLoading ? <CircularProgress sx={{ alignSelf: 'center' }} /> : !posts.length ? 'Couldn\'t find any snippets!' :
 				<Grid container spacing={4}>
 					{posts.map(post => (
 						<Grid item>
