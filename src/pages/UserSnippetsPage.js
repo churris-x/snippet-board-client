@@ -6,6 +6,8 @@ import { Container, CircularProgress } from '@mui/material';
 import { selectIsLoading, selectUserPosts } from '../redux/selectors';
 import { fetchUserPosts } from '../redux/actions';
 
+import { SnippetCard } from '../components';
+
 export const UserSnippetsPage = () => {
 	const dispatch = useDispatch();
 	const isLoading = useSelector(selectIsLoading);
@@ -16,9 +18,9 @@ export const UserSnippetsPage = () => {
 	}, []);
 
 	return (
-		<Container maxWidth="sm">
+		<Container sx={{ flexDirection: 'row' }}>
 			{isLoading ? <CircularProgress /> : !posts.length ? 'Couldn\'t find any snippets!' :
-				'Snippets!'
+				posts.map(post => <SnippetCard key={post.id} {...post} />)
 			}
 		</Container>
 	);

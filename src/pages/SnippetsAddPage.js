@@ -12,7 +12,7 @@ export const SnippetsAddPage = () => {
 	const [state, setState] = useState({
 		title: '',
 		body: '',
-		syntax: '',
+		// syntax: '',
 	});
 
 	const handleSubmit = () => dispatch(createPost(state));

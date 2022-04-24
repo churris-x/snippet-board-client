@@ -4,3 +4,4 @@ export * from './Message';
 export * from './MenuBar';
 export * from './Avatar';
 export * from './SearchBar';
+export * from './SnippetCard';
