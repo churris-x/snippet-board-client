@@ -9,6 +9,7 @@ import {
 import {
 	Menu as MenuIcon,
 	MoreVertOutlined as MoreVertOutlinedIcon,
+	ContentCut as ContentCutIcon,
 } from '@mui/icons-material';
 
 import { selectToken } from '../redux/selectors';
@@ -57,8 +58,9 @@ export const MenuBar = () => {
 						component="div"
 						sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
 					>
-						LOGO
+						SNIP IT
 					</Typography>
+					<ContentCutIcon sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, fontSize: 40 }} />
 					<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 						<IconButton
 							size="large"
