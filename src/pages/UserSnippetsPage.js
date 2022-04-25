@@ -25,7 +25,7 @@ export const UserSnippetsPage = () => {
 	return (
 		<Container sx={{ flexDirection: 'row' }}>
 			{isLoading ? <CircularProgress sx={{ alignSelf: 'center' }} /> : !posts.length ? 'Couldn\'t find any snippets!' :
-				<Grid container spacing={4}>
+				<Grid container spacing={4} mb={4}>
 					<Grid item>
 						<Card sx={{ width: 345, height: 338 }}>
 							<CardActionArea onClick={handleNew} sx={{

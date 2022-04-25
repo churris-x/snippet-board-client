@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../redux/selectors';
 
 import { Color } from '../constants';
+import { ReadEditor } from './'
 
 const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
@@ -68,7 +69,7 @@ export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
 				image="/static/images/cards/paella.jpg"
 				alt="Paella dish"
 			/> */}
-			<Box sx={{ mx: 2 }}>
+			{/* <Box sx={{ mx: 2 }}>
 				<TextField
 					value={body.substring(0, 500)}
 					minRows={7}
@@ -78,6 +79,9 @@ export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
 					// disabled
 					inputProps={{ readOnly: true, style: { fontSize: 12 } }}
 				/>
+			</Box> */}
+			<Box sx={{ mx: 2 }}>
+				<ReadEditor body={body} />
 			</Box>
 
 			<CardActions>
