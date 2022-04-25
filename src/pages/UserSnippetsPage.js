@@ -24,7 +24,7 @@ export const UserSnippetsPage = () => {
 
 	return (
 		<Container sx={{ flexDirection: 'row' }}>
-			{isLoading ? <CircularProgress sx={{ alignSelf: 'center' }} /> : !posts.length ? 'Couldn\'t find any snippets!' :
+			{isLoading ? <CircularProgress sx={{ alignSelf: 'center' }} /> :
 				<Grid container spacing={4} mb={4}>
 					<Grid item>
 						<Card sx={{ width: 345, height: 338 }}>
@@ -42,11 +42,13 @@ export const UserSnippetsPage = () => {
 							</CardActionArea>
 						</Card>
 					</Grid>
-					{posts.map(post => (
-						<Grid item key={post.id}>
-							<SnippetCard {...post} />
-						</Grid>
-					))}
+					{!posts.length
+						? <Grid item>Couldn't find any posts!</Grid>
+						: posts.map(post => (
+							<Grid item key={post.id}>
+								<SnippetCard {...post} />
+							</Grid>
+						))}
 				</Grid>
 			}
 		</Container>
