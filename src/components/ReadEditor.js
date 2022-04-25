@@ -3,16 +3,15 @@ import AceEditor from "react-ace";
 
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
-import "ace-builds/src-noconflict/mode-jsx";
 
 const languages = [
 	"javascript", "java", "python", "xml", "ruby", "sass", "markdown",
 	"mysql", "json", "html", "handlebars", "golang", "csharp", "elixir",
-	"typescript", "css",
+	"typescript", "css", "plain_text", 'jsx'
 ];
 
 const themes = [
-	"monokai",
+	"monokai", "github",
 ];
 
 languages.forEach(lang => {
@@ -21,12 +20,14 @@ languages.forEach(lang => {
 });
 themes.forEach(theme => require(`ace-builds/src-noconflict/theme-${theme}`));
 
-export const ReadEditor = ({ body = '' }) => {
+export const ReadEditor = ({ body = '', syntax = 'plain_text' }) => {
+
+	const mode = languages.find(i => i === syntax) ? syntax : 'plain_text';
 
 	return (
 		<AceEditor
-			mode="jsx"
-			theme="monokai"
+			mode={mode}
+			theme={"monokai"}
 			showGutter={false}
 			height='200px'
 			width='100%'

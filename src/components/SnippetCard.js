@@ -81,7 +81,7 @@ export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
 				/>
 			</Box> */}
 			<Box sx={{ mx: 2 }}>
-				<ReadEditor body={body} />
+				<ReadEditor {...{ body, syntax }} />
 			</Box>
 
 			<CardActions>
