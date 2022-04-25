@@ -1,4 +1,3 @@
-import { useState } from "react";
 import AceEditor from "react-ace";
 
 import "ace-builds/src-min-noconflict/ext-searchbox";
@@ -31,7 +30,8 @@ export const ReadEditor = ({ body = '', syntax = 'plain_text' }) => {
 			showGutter={false}
 			height='200px'
 			width='100%'
-			style={{ padding: 10, borderRadius: 4 }}
+			style={{ borderRadius: 4 }}
+			showPrintMargin={false}
 			wrapEnabled={true}
 			highlightActiveLine={false}
 			focus={false}

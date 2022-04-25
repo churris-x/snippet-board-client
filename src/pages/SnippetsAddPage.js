@@ -5,30 +5,30 @@ import { Button, Container, Typography, Box, TextField, Paper } from '@mui/mater
 import { createPost } from '../redux/actions';
 import { selectIsLoading } from '../redux/selectors';
 
+import { Editor } from '../components/Editor';
+
 export const SnippetsAddPage = () => {
 	const dispatch = useDispatch();
 	const isLoading = useSelector(selectIsLoading);
 
-	const [state, setState] = useState({
-		title: '',
-		body: '',
-		// syntax: '',
-	});
+	const [title, setTitle] = useState('');
+	const [body, setBody] = useState('');
+	const [syntax, setSyntax] = useState('plain_text');
 
-	const handleSubmit = () => dispatch(createPost(state));
-	const handleTitle = event => setState({ ...state, title: event.target.value });
-	const handleBody = event => setState({ ...state, body: event.target.value });
-	// const handleSyntax
+	const handleSubmit = () => dispatch(createPost({ title, body, syntax }));
+	const handleTitle = event => setTitle(event.target.value);
+	const handleBody = newValue => setBody(newValue);
+	const handleSyntax = newValue => setSyntax(newValue);
 
 	return (
-		<Container maxWidth="sm">
-			<Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+		<Container sx={{ maxWidth: { xs: "md", md: 'lg' } }}>
+			<Paper variant="outlined" sx={{ m: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
 				<Typography component="h1" variant="h4">
 					Create snippet
 				</Typography>
 				<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 					<TextField
-						value={state.title}
+						value={title}
 						onChange={handleTitle}
 						margin="normal"
 						required
@@ -39,7 +39,7 @@ export const SnippetsAddPage = () => {
 						name="Title"
 						autoFocus
 					/>
-					<TextField
+					{/* <TextField
 						value={state.body}
 						onChange={handleBody}
 						minRows={5}
@@ -51,6 +51,11 @@ export const SnippetsAddPage = () => {
 						id="body"
 						label="Start coding!"
 						name="Content"
+					/> */}
+					<Editor
+						value={body}
+						onChange={handleBody}
+						onSyntaxChange={handleSyntax}
 					/>
 					<Button
 						fullWidth
