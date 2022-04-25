@@ -25,7 +25,7 @@ const pages = [
 	{ name: 'My Snippets', route: '/snippets/user' },
 ];
 const settings = [
-	'Profile',
+	// 'Profile',
 	'darkmode',
 	'Logout',
 ];
@@ -127,12 +127,9 @@ export const MenuBar = () => {
 								open={Boolean(anchorElUser)}
 								onClose={handleCloseUserMenu}
 							>
-								<MenuItem onClick={handleCloseUserMenu}>
-									<Typography textAlign="center">Profile</Typography>
-								</MenuItem>
 								<MenuItem onClick={() => dispatch(toggleMode())}>
 									{mode === 'dark' ? <Brightness7Icon sx={{ mr: 1 }} /> : <Brightness4Icon sx={{ mr: 1 }} />}
-									<Typography textAlign="center">{mode} mode</Typography>
+									<Typography textAlign="center">{mode === 'dark' ? 'Light' : 'Dark'} mode</Typography>
 								</MenuItem>
 								<MenuItem onClick={() => { handleCloseUserMenu(); dispatch(logout()) }}>
 									<LogoutIcon sx={{ mr: 1 }} />
