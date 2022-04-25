@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Container, Typography, Box, TextField, Paper } from '@mui/material';
+import { Button, Container, Typography, Box, TextField, Paper, Grid } from '@mui/material';
 
 import { createPost } from '../redux/actions';
 import { selectIsLoading } from '../redux/selectors';
@@ -27,36 +27,49 @@ export const SnippetsAddPage = () => {
 					Create snippet
 				</Typography>
 				<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-					<TextField
-						value={title}
-						onChange={handleTitle}
-						margin="normal"
-						required
-						fullWidth
-						disabled={isLoading}
-						id="title"
-						label="Title"
-						name="Title"
-						autoFocus
-					/>
-					{/* <TextField
-						value={state.body}
-						onChange={handleBody}
-						minRows={5}
-						margin="normal"
-						required
-						fullWidth
-						multiline
-						disabled={isLoading}
-						id="body"
-						label="Start coding!"
-						name="Content"
-					/> */}
-					<Editor
-						value={body}
-						onChange={handleBody}
-						onSyntaxChange={handleSyntax}
-					/>
+					<Grid container spacing={2}>
+						<Grid item xs={12}>
+							<TextField
+								value={title}
+								onChange={handleTitle}
+								margin="normal"
+								required
+								fullWidth
+								disabled={isLoading}
+								id="title"
+								label="Title"
+								name="Title"
+								autoFocus
+							/>
+						</Grid>
+						<Grid item xs={12} sm={6}>
+							<TextField
+								autoComplete="given-name"
+								name="firstName"
+								required
+								fullWidth
+								id="firstName"
+								label="First Name"
+							/>
+						</Grid>
+						<Grid item xs={12} sm={6}>
+							<TextField
+								required
+								fullWidth
+								id="lastName"
+								label="Last Name"
+								name="lastName"
+								autoComplete="family-name"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<Editor
+								value={body}
+								onChange={handleBody}
+								onSyntaxChange={handleSyntax}
+							/>
+						</Grid>
+					</Grid>
 					<Button
 						fullWidth
 						onClick={handleSubmit}
