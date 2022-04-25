@@ -18,8 +18,15 @@ export const Message = () => {
 		// anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
 		>
 			<Alert onClose={handleClose} severity={type} sx={{ width: '100%', boxShadow: 2 }}>
-				<AlertTitle><strong>{message}</strong></AlertTitle>
-				{description}
+				{description
+					? <>
+						<AlertTitle>
+							<strong>{message}</strong>
+						</AlertTitle>
+						{description}
+					</>
+					: message
+				}
 			</Alert>
 		</Snackbar>
 	)

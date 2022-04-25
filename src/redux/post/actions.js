@@ -17,8 +17,8 @@ export const fetchUserPosts = () => async (dispatch, getState) => {
 
 		dispatch({ type: POST_FETCH_USER, payload: response.data });
 	} catch (error) {
-		console.log('Error: User login => ', error);
-		dispatch(setMessage('error', 'Failed to fetch posts!'));
+		console.log('Error: fetch user posts => ', error);
+		dispatch(setMessage('error', 'Failed to fetch posts', error.response.data));
 	}
 	dispatch({ type: LOADING_STOP });
 };
@@ -44,8 +44,8 @@ export const createPost = post => async (dispatch, getState) => {
 		dispatch({ type: POST_CREATE, payload: response.data });
 		dispatch(setMessage('success', 'Created new snippet!'));
 	} catch (error) {
-		console.log('Error: User login => ', error);
-		dispatch(setMessage('error', 'Failed to create post!'));
+		console.log('Error: create post => ', error);
+		dispatch(setMessage('error', 'Failed to create post', error.response.data));
 	}
 	dispatch({ type: LOADING_STOP });
 };
