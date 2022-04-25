@@ -10,11 +10,14 @@ import {
 	Menu as MenuIcon,
 	MoreVertOutlined as MoreVertOutlinedIcon,
 	ContentCut as ContentCutIcon,
+	Logout as LogoutIcon,
+	Brightness4 as Brightness4Icon,
+	Brightness7 as Brightness7Icon,
 } from '@mui/icons-material';
 
-import { selectToken } from '../redux/selectors';
+import { selectMode, selectToken } from '../redux/selectors';
 import { Avatar, SearchBar } from './';
-import { logout } from '../redux/actions';
+import { logout, toggleMode } from '../redux/actions';
 
 const pages = [
 	{ name: 'Home', route: '/' },
@@ -40,6 +43,7 @@ export const MenuBar = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const token = useSelector(selectToken);
+	const mode = useSelector(selectMode);
 
 	const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
 	const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
@@ -126,7 +130,12 @@ export const MenuBar = () => {
 								<MenuItem onClick={handleCloseUserMenu}>
 									<Typography textAlign="center">Profile</Typography>
 								</MenuItem>
+								<MenuItem onClick={() => dispatch(toggleMode())}>
+									{mode === 'dark' ? <Brightness7Icon sx={{ mr: 1 }} /> : <Brightness4Icon sx={{ mr: 1 }} />}
+									<Typography textAlign="center">{mode} mode</Typography>
+								</MenuItem>
 								<MenuItem onClick={() => { handleCloseUserMenu(); dispatch(logout()) }}>
+									<LogoutIcon sx={{ mr: 1 }} />
 									<Typography textAlign="center">Logout</Typography>
 								</MenuItem>
 							</Menu>

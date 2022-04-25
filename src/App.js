@@ -31,7 +31,6 @@ function App() {
 			<CssBaseline />
 
 			<MenuBar />
-			<ThemeToggle />
 			<Message />
 
 			<Routes>
