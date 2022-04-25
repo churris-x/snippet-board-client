@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Alert, Snackbar } from '@mui/material';
+import { Alert, AlertTitle, Snackbar } from '@mui/material';
 
 import { selectMessage } from '../redux/selectors';
 import { closeMessage } from '../redux/actions';
 
 export const Message = () => {
 	const dispatch = useDispatch();
-	const { type, message, snackOpen } = useSelector(selectMessage);
+	const { type, message, snackOpen, description } = useSelector(selectMessage);
 
 	const handleClose = () => dispatch(closeMessage());
 
@@ -18,7 +18,8 @@ export const Message = () => {
 		// anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
 		>
 			<Alert onClose={handleClose} severity={type} sx={{ width: '100%', boxShadow: 2 }}>
-				{message}
+				<AlertTitle><strong>{message}</strong></AlertTitle>
+				{description}
 			</Alert>
 		</Snackbar>
 	)

@@ -8,9 +8,9 @@ const types = [
 ];
 const modes = ['light', 'dark'];
 
-export const setMessage = (type, message) => ({
+export const setMessage = (type, message, description) => ({
 	type: SET_MESSAGE,
-	payload: { type, message }
+	payload: { type, message, description }
 });
 
 export const closeMessage = () => ({ type: CLOSE_MESSAGE });

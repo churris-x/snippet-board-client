@@ -3,6 +3,7 @@ import { LOADING_START, LOADING_STOP, SET_MESSAGE, CLEAR_MESSAGE, CLOSE_MESSAGE,
 const initialState = {
 	isLoading: false,
 	message: '',
+	description: '',
 	snackOpen: false,
 	type: 'success',
 	mode: 'light',
@@ -15,7 +16,13 @@ export const appReducer = (state = initialState, { type, payload }) => {
 		case LOADING_STOP:
 			return { ...state, isLoading: false };
 		case SET_MESSAGE:
-			return { ...state, message: payload.message, type: payload.type, snackOpen: true };
+			return {
+				...state,
+				message: payload.message,
+				type: payload.type,
+				description: payload.description,
+				snackOpen: true,
+			};
 		case CLEAR_MESSAGE:
 			return { ...state, message: '' };
 		case CLOSE_MESSAGE:
