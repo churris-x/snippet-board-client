@@ -6,6 +6,7 @@ import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode';
 import ChatIcon from '@mui/icons-material/Chat';
 import WrapTextIcon from '@mui/icons-material/WrapText';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
@@ -31,7 +32,7 @@ export const Editor = ({ value = '', onChange = () => { }, initialSyntax = 'plai
 	const [tabSize, setTabSize] = useState('4');
 	const [syntax, setSyntax] = useState('plain_text');
 	const [theme, setTheme] = useState('monokai');
-	const [formats, setFormats] = useState(() => ['gutter', 'numbers']);
+	const [formats, setFormats] = useState(() => ['gutter', 'numbers', 'highlight']);
 
 	const handleFormat = (event, newFormats) => {
 		setFormats(newFormats);
@@ -110,6 +111,12 @@ export const Editor = ({ value = '', onChange = () => { }, initialSyntax = 'plai
 							<WrapTextIcon />
 						</ToggleButton>
 					</Tooltip>
+
+					<Tooltip value="highlight" title="Highlight active line" placement="bottom">
+						<ToggleButton value="highlight" aria-label="highlight active line">
+							<BorderColorIcon />
+						</ToggleButton>
+					</Tooltip>
 				</ToggleButtonGroup>
 			</Grid>
 			<Grid item xs={3}>
@@ -146,6 +153,7 @@ export const Editor = ({ value = '', onChange = () => { }, initialSyntax = 'plai
 					value={value}
 					wrapEnabled={!!formats.find(i => i === 'wrap')}
 					showGutter={!!formats.find(i => i === 'gutter')}
+					highlightActiveLine={!!formats.find(i => i === 'highlight')}
 					fontSize={Number(font)}
 					style={{
 						borderRadius: 4,
