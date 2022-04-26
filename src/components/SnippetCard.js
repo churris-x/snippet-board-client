@@ -51,7 +51,7 @@ export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
 						<ExpandMoreIcon />
 					</ExpandMore>
 				}
-				title={title}
+				title={expanded ? title : title.length > 24 ? title.substring(0, 24).concat('…') : title}
 				subheader={moment(updatedAt).format('Do MMMM YYYY')}
 			/>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>

@@ -27,7 +27,7 @@ export const UserSnippetsPage = () => {
 			{isLoading ? <CircularProgress sx={{ alignSelf: 'center' }} /> :
 				<Grid container spacing={4} my={4}>
 					<Grid item>
-						<Card sx={{ width: 345, height: 338 }}>
+						<Card sx={{ width: 345, height: 344 }}>
 							<CardActionArea onClick={handleNew} sx={{
 								height: 'inherit',
 								display: 'flex',
