@@ -103,7 +103,7 @@ export const MenuBar = () => {
 							<Button
 								key={page.route}
 								onClick={() => { navigate(page.route); handleCloseNavMenu() }}
-								sx={{ my: 2, color: 'white', display: 'block' }}
+								sx={{ my: 2, color: 'white', display: 'block', '&:hover': { backgroundColor: 'primary.light' } }}
 							>
 								{page.name}
 							</Button>

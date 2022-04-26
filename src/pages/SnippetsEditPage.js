@@ -26,7 +26,7 @@ export const SnippetsEditPage = () => {
 
 	return (
 		<Container sx={{ mt: 8, maxWidth: { xs: "md", md: 'lg' } }}>
-			<Paper variant="outlined" sx={{ m: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+			<Paper sx={{ m: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
 				<Typography component="h1" variant="h4">
 					Edit snippet
 				</Typography>
@@ -59,7 +59,7 @@ export const SnippetsEditPage = () => {
 						onClick={handleSubmit}
 						variant="contained"
 						disabled={isLoading}
-						sx={{ mt: 3, mb: 2 }}
+						sx={{ mt: 3, mb: 2, backgroundColor: 'secondary.main', '&:hover': { backgroundColor: 'secondary.light' } }}
 					>
 						Edit Snippet
 					</Button>
