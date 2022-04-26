@@ -84,25 +84,25 @@ export const Editor = ({ value = '', onChange = () => { }, onSyntaxChange = () =
 					size="small"
 				>
 					<Tooltip value="numbers" title="Line numbers" placement="bottom">
-						<ToggleButton aria-label="line numbers">
+						<ToggleButton value="numbers" aria-label="line numbers">
 							<FormatListNumberedIcon />
 						</ToggleButton>
 					</Tooltip>
 
 					<Tooltip value="gutter" title="Gutter" placement="bottom">
-						<ToggleButton aria-label="editor gutter">
+						<ToggleButton value="gutter" aria-label="editor gutter">
 							<ChromeReaderModeIcon />
 						</ToggleButton>
 					</Tooltip>
 
 					<Tooltip value="autocomplete" title="Autocomplete" placement="bottom">
-						<ToggleButton aria-label="autocomplete">
+						<ToggleButton value="autocomplete" aria-label="autocomplete">
 							<ChatIcon />
 						</ToggleButton>
 					</Tooltip>
 
 					<Tooltip value="wrap" title="Wrap text" placement="bottom">
-						<ToggleButton aria-label="wrap text">
+						<ToggleButton value="wrap" aria-label="wrap text">
 							<WrapTextIcon />
 						</ToggleButton>
 					</Tooltip>
