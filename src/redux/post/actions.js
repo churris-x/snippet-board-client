@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOADING_START, LOADING_STOP, POST_CREATE, POST_DELETE, POST_EDIT, POST_FETCH_USER } from '../types';
+import { LOADING_START, LOADING_STOP, POST_CREATE, POST_DELETE, POST_EDIT, POST_FETCH_BY_ID, POST_FETCH_USER } from '../types';
 import { API_URL } from '../../constants'
 import { setMessage } from '../actions';
 
@@ -19,6 +19,25 @@ export const fetchUserPosts = () => async (dispatch, getState) => {
 	} catch (error) {
 		console.log('Error: fetch user posts => ', error);
 		dispatch(setMessage('error', 'Failed to fetch snippets', error.response.data));
+	}
+	dispatch({ type: LOADING_STOP });
+};
+
+export const fetchPostById = id => async (dispatch, getState) => {
+	const { token } = getState().user;
+	if (!token || !id) return;
+
+	dispatch({ type: LOADING_START });
+	try {
+		const response = await axios.get(
+			`${API_URL}/posts/user/${id}`,
+			{ headers: { Authorization: `Bearer ${token}` } }
+		);
+
+		dispatch({ type: POST_FETCH_BY_ID, payload: response.data })
+	} catch (error) {
+		console.log('Error: fetch user post by id => ', error);
+		dispatch(setMessage('error', 'Failed to fetch snippet', error.response.data));
 	}
 	dispatch({ type: LOADING_STOP });
 };
