@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AceEditor from "react-ace";
 
 import { Button, Container, Typography, Box, Paper, InputLabel, TextField, Grid, Select, MenuItem, ToggleButtonGroup, ToggleButton, Tooltip } from '@mui/material';
@@ -26,7 +26,7 @@ languages.forEach(lang => {
 });
 themes.forEach(theme => require(`ace-builds/src-noconflict/theme-${theme}`));
 
-export const Editor = ({ value = '', onChange = () => { }, onSyntaxChange = () => { } }) => {
+export const Editor = ({ value = '', onChange = () => { }, initialSyntax = 'plain_text', onSyntaxChange = () => { } }) => {
 	const [font, setFont] = useState('16');
 	const [tabSize, setTabSize] = useState('4');
 	const [syntax, setSyntax] = useState('plain_text');
@@ -41,6 +41,10 @@ export const Editor = ({ value = '', onChange = () => { }, onSyntaxChange = () =
 		setSyntax(event.target.value);
 		onSyntaxChange(event.target.value);
 	};
+
+	useEffect(() => {
+		setSyntax(initialSyntax);
+	}, [initialSyntax]);
 
 	return (
 
