@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Container, Typography, Box, TextField, Paper, Grid } from '@mui/material';
+import { Button, Container, Typography, Box, TextField, Paper, Grid, Modal } from '@mui/material';
 
-import { clearPost, editPost, fetchPostById } from '../redux/actions';
+import { clearPost, deletePost, editPost, fetchPostById } from '../redux/actions';
 import { selectIsLoading, selectPostById } from '../redux/selectors';
 
 import { Editor } from '../components';
@@ -19,7 +19,14 @@ export const SnippetsEditPage = () => {
 	const [body, setBody] = useState('');
 	const [syntax, setSyntax] = useState('plain_text');
 
+	const [showModal, setShowModal] = useState(false);
+
 	const handleSubmit = () => dispatch(editPost({ id: post.id, title, body, syntax }));
+	const handleUndo = () => {
+		setTitle(post.title);
+		setBody(post.body);
+		setSyntax(post.syntax);
+	};
 
 	const handleTitle = event => setTitle(event.target.value);
 	const handleBody = newValue => setBody(newValue);
@@ -27,9 +34,9 @@ export const SnippetsEditPage = () => {
 
 	useEffect(() => {
 		if (post) {
-			setTitle(post.title)
-			setBody(post.body)
-			setSyntax(post.syntax)
+			setTitle(post.title);
+			setBody(post.body);
+			setSyntax(post.syntax);
 		}
 	}, [post]);
 
@@ -40,11 +47,56 @@ export const SnippetsEditPage = () => {
 
 	return (
 		<Container sx={{ mt: 8, maxWidth: { xs: "md", md: 'lg' } }}>
+			<Modal
+				open={showModal}
+				onClose={() => setShowModal(false)}
+				aria-labelledby="modal-modal-title"
+				aria-describedby="modal-modal-description"
+			>
+				<Box sx={{
+					position: 'absolute',
+					top: '50%',
+					left: '50%',
+					transform: 'translate(-50%, -50%)',
+					width: 400,
+					bgcolor: 'background.paper',
+					boxShadow: 24,
+					borderRadius: '4px',
+					p: 4,
+				}}>
+					<Typography id="modal-modal-title" variant="h6" component="h2">
+						Confirm delete
+					</Typography>
+					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+						Are you sure you want to delete <strong>{post && post.title}</strong> ?
+					</Typography>
+					<Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between' }} >
+						<Button
+							onClick={() => dispatch(deletePost(post.id))}
+							variant="contained"
+							disabled={isLoading}
+							sx={{
+								backgroundColor: 'secondary.main',
+								'&:hover': { backgroundColor: 'secondary.light' },
+							}}
+						>
+							Delete
+						</Button>
+						<Button
+							onClick={() => setShowModal(false)}
+							variant="outlined"
+							disabled={isLoading}
+						>
+							Cancel
+						</Button>
+					</Box>
+				</Box>
+			</Modal>
 			<Paper sx={{ m: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
 				<Typography component="h1" variant="h4">
 					Edit snippet
 				</Typography>
-				<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+				<Box sx={{ mt: 1 }}>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
 							<TextField
@@ -68,16 +120,36 @@ export const SnippetsEditPage = () => {
 								onSyntaxChange={handleSyntax}
 							/>
 						</Grid>
+						<Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', }}>
+							<Button
+								onClick={() => setShowModal(true)}
+								variant="contained"
+								disabled={isLoading}
+								sx={{
+									backgroundColor: 'secondary.main',
+									'&:hover': { backgroundColor: 'secondary.light' },
+									marginRight: 'auto'
+								}}
+							>
+								Delete Snippet
+							</Button>
+							<Button
+								onClick={handleUndo}
+								variant="outlined"
+								disabled={isLoading}
+								sx={{ mr: 2 }}
+							>
+								Undo
+							</Button>
+							<Button
+								onClick={handleSubmit}
+								variant="contained"
+								disabled={isLoading}
+							>
+								Update
+							</Button>
+						</Grid>
 					</Grid>
-					<Button
-						fullWidth
-						onClick={handleSubmit}
-						variant="contained"
-						disabled={isLoading}
-						sx={{ mt: 3, mb: 2, backgroundColor: 'secondary.main', '&:hover': { backgroundColor: 'secondary.light' } }}
-					>
-						Edit Snippet
-					</Button>
 				</Box>
 			</Paper>
 		</Container>

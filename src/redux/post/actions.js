@@ -110,7 +110,7 @@ export const deletePost = id => async (dispatch, getState) => {
 			{ headers: { Authorization: `Bearer ${token}` } }
 		);
 		dispatch({ type: POST_DELETE, payload: id });
-		dispatch(setMessage('success', 'Created new snippet!'));
+		dispatch(setMessage('success', 'Deleted snippet!'));
 	} catch (error) {
 		console.log('Error: delete post => ', error);
 		dispatch(setMessage('error', 'Failed to delete snippet', error.response.data));
