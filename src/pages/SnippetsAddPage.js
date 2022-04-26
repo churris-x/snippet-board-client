@@ -22,7 +22,7 @@ export const SnippetsAddPage = () => {
 
 	return (
 		<Container sx={{ mt: 8, maxWidth: { xs: "md", md: 'lg' } }}>
-			<Paper variant="outlined" sx={{ m: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+			<Paper sx={{ m: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
 				<Typography component="h1" variant="h4">
 					Create snippet
 				</Typography>
