@@ -1,23 +1,25 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Container, Typography, Box, TextField, Paper } from '@mui/material';
+import { Button, Container, Typography, Box, TextField, Paper, Grid } from '@mui/material';
 
-import { createPost } from '../redux/actions';
+import { editPost } from '../redux/actions';
 import { selectIsLoading } from '../redux/selectors';
 
 import { Editor } from '../components/Editor';
 
 export const SnippetsEditPage = () => {
-	const { id } = useParams();
+	const postId = useParams().id;
 	const dispatch = useDispatch();
 	const isLoading = useSelector(selectIsLoading);
+	// const postById = useSelector(selectIsLoading);
+	let id
 
 	const [title, setTitle] = useState('');
 	const [body, setBody] = useState('');
 	const [syntax, setSyntax] = useState('plain_text');
 
-	const handleSubmit = () => dispatch(createPost({ title, body, syntax }));
+	const handleSubmit = () => dispatch(editPost({ id, title, body, syntax }));
 	const handleTitle = event => setTitle(event.target.value);
 	const handleBody = newValue => setBody(newValue);
 	const handleSyntax = newValue => setSyntax(newValue);
@@ -29,24 +31,29 @@ export const SnippetsEditPage = () => {
 					Edit snippet
 				</Typography>
 				<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-					<TextField
-						value={title}
-						onChange={handleTitle}
-						margin="normal"
-						required
-						fullWidth
-						disabled={isLoading}
-						id="title"
-						label="Title"
-						name="Title"
-						autoFocus
-					/>
-					<Editor
-						value={body}
-						onChange={handleBody}
-						// syntax={syntax}
-						onSyntaxChange={handleSyntax}
-					/>
+					<Grid container spacing={2}>
+						<Grid item xs={12}>
+							<TextField
+								value={title}
+								onChange={handleTitle}
+								margin="normal"
+								required
+								fullWidth
+								disabled={isLoading}
+								id="title"
+								label="Title"
+								name="Title"
+								autoFocus
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<Editor
+								value={body}
+								onChange={handleBody}
+								onSyntaxChange={handleSyntax}
+							/>
+						</Grid>
+					</Grid>
 					<Button
 						fullWidth
 						onClick={handleSubmit}
@@ -54,7 +61,7 @@ export const SnippetsEditPage = () => {
 						disabled={isLoading}
 						sx={{ mt: 3, mb: 2 }}
 					>
-						Create Snippet
+						Edit Snippet
 					</Button>
 				</Box>
 			</Paper>

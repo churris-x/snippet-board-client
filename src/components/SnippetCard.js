@@ -96,7 +96,7 @@ export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
 				<Box sx={{ display: 'flex', flexGrow: 1, justifyContent: 'flex-end' }}>
 					<Tooltip title="Details" placement="bottom">
 						<IconButton
-							onClick={() => navigate(`/snippets/:${id}/details`)}
+							onClick={() => navigate(`/snippets/${id}/details`)}
 							aria-label="Go to details"
 						>
 							<LaunchIcon />

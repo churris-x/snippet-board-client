@@ -63,8 +63,8 @@ export const editPost = post => async (dispatch, getState) => {
 	dispatch({ type: LOADING_START });
 
 	try {
-		const response = await axios.post(
-			`${API_URL}/posts/user${id}`,
+		const response = await axios.patch(
+			`${API_URL}/posts/user/${id}`,
 			{ title, body, syntax },
 			{ headers: { Authorization: `Bearer ${token}` } }
 		);
@@ -85,8 +85,8 @@ export const deletePost = id => async (dispatch, getState) => {
 	dispatch({ type: LOADING_START });
 
 	try {
-		const response = await axios.post(
-			`${API_URL}/posts/user${id}`,
+		const response = await axios.delete(
+			`${API_URL}/posts/user/${id}`,
 			{ headers: { Authorization: `Bearer ${token}` } }
 		);
 		dispatch({ type: POST_DELETE, payload: id });

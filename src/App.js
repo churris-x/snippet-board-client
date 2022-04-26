@@ -37,7 +37,7 @@ function App() {
 				<Route exact path='/' element={<HomePage />} />
 				<Route path='/snippets/user' element={<UserSnippetsPage />} />
 				<Route path='/snippets/user/add' element={<SnippetsAddPage />} />
-				<Route path='/snippets/:id/edit' element={<SnippetsEditPage />} />
+				<Route path='/snippets/:id/details' element={<SnippetsEditPage />} />
 				<Route path='/login' element={<LoginPage />} />
 				<Route path='/signup' element={<SignupPage />} />
 			</Routes>
