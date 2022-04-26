@@ -8,7 +8,7 @@ import { selectMode } from './redux/selectors'
 import { tokenLogin } from './redux/actions';
 
 import { HomePage, LoginPage, SignupPage, SnippetsAddPage, SnippetsEditPage, UserSnippetsPage } from './pages';
-import { ThemeToggle, Message, MenuBar } from './components';
+import { Message, MenuBar } from './components';
 import { light, dark } from './constants';
 
 function App() {

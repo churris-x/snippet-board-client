@@ -5,5 +5,5 @@ export * from './MenuBar';
 export * from './Avatar';
 export * from './SearchBar';
 export * from './SnippetCard';
-// export * from './Editor';
+export * from './Editor';
 export * from './ReadEditor';

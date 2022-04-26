@@ -9,7 +9,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { login } from '../redux/actions';
 import { selectIsLoading, selectToken } from '../redux/selectors';
 
-
 export const LoginPage = () => {
 	const dispatch = useDispatch();
 	const token = useSelector(selectToken);

@@ -1,5 +1,4 @@
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
+import { Container } from '@mui/material';
 
 export const HomePage = () => {
 	return (

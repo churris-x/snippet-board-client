@@ -6,7 +6,7 @@ import { Button, Container, Typography, Box, TextField, Paper, Grid } from '@mui
 import { clearPost, editPost, fetchPostById } from '../redux/actions';
 import { selectIsLoading, selectPostById } from '../redux/selectors';
 
-import { Editor } from '../components/Editor';
+import { Editor } from '../components';
 
 export const SnippetsEditPage = () => {
 	const postId = useParams().id;

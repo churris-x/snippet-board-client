@@ -5,7 +5,7 @@ import { Button, Container, Typography, Box, TextField, Paper, Grid } from '@mui
 import { createPost } from '../redux/actions';
 import { selectIsLoading } from '../redux/selectors';
 
-import { Editor } from '../components/Editor';
+import { Editor } from '../components';
 
 export const SnippetsAddPage = () => {
 	const dispatch = useDispatch();

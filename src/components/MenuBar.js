@@ -112,7 +112,7 @@ export const MenuBar = () => {
 					<SearchBar />
 					{token ?
 						<Box sx={{ flexGrow: 0 }}>
-							<Tooltip title="Open settings">
+							<Tooltip title="Open options">
 								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 									<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
 								</IconButton>
