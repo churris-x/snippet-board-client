@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
 import { styled } from '@mui/material/styles';
@@ -14,11 +15,11 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import LaunchIcon from '@mui/icons-material/Launch';
 
-import { useSelector } from 'react-redux';
 import { selectUser } from '../redux/selectors';
 
 import { Color } from '../constants';
 import { ReadEditor } from './'
+import { setMessage } from '../redux/actions';
 
 const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
@@ -36,10 +37,15 @@ const ExpandMore = styled((props) => {
 
 export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
 	const [expanded, setExpanded] = useState(false);
 
 	const handleExpandClick = () => setExpanded(!expanded);
+	const handleCopy = () => {
+		navigator.clipboard.writeText(body);
+		dispatch(setMessage('success', 'Copied snippet'));
+	};
 
 	return (
 		<Card sx={{ width: 345 }}>
@@ -89,7 +95,7 @@ export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
 				23k */}
 
 				<Tooltip title="Copy" placement="bottom">
-					<IconButton aria-label="copy">
+					<IconButton onClick={handleCopy} aria-label="copy">
 						<ContentCopyIcon />
 					</IconButton>
 				</Tooltip>
