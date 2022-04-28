@@ -6,7 +6,7 @@ const initialState = {
 	description: '',
 	snackOpen: false,
 	type: 'success',
-	mode: 'light',
+	mode: localStorage.getItem("mode") || 'light',
 };
 
 export const appReducer = (state = initialState, { type, payload }) => {
@@ -28,6 +28,7 @@ export const appReducer = (state = initialState, { type, payload }) => {
 		case CLOSE_MESSAGE:
 			return { ...state, snackOpen: false };
 		case TOGGLE_MODE:
+			localStorage.setItem("mode", state.mode === 'dark' ? 'light' : 'dark');
 			return { ...state, mode: state.mode === 'dark' ? 'light' : 'dark' };
 		default:
 			return state;
