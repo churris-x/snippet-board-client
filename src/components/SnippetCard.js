@@ -35,7 +35,7 @@ const ExpandMore = styled((props) => {
 	}),
 }));
 
-export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
+export const SnippetCard = ({ id, title, body, description, syntax, updatedAt, userId }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
@@ -68,9 +68,11 @@ export const SnippetCard = ({ id, title, body, syntax, updatedAt, userId }) => {
 			/>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>
 				<CardContent>
-					<Typography variant="body2" color="text.secondary">
-						Description goes here along with tags
-					</Typography>
+					{description &&
+						<Typography variant="body2" color="text.secondary">
+							{description}
+						</Typography>
+					}
 				</CardContent>
 			</Collapse>
 			{/* <CardMedia
