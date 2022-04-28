@@ -12,11 +12,13 @@ export const SnippetsAddPage = () => {
 	const isLoading = useSelector(selectIsLoading);
 
 	const [title, setTitle] = useState('');
+	const [description, setDescription] = useState('');
 	const [body, setBody] = useState('');
 	const [syntax, setSyntax] = useState('plain_text');
 
-	const handleSubmit = () => dispatch(createPost({ title, body, syntax }));
+	const handleSubmit = () => dispatch(createPost({ title, body, description, syntax }));
 	const handleTitle = event => setTitle(event.target.value);
+	const handleDescription = event => setDescription(event.target.value);
 	const handleBody = newValue => setBody(newValue);
 	const handleSyntax = newValue => setSyntax(newValue);
 
@@ -40,6 +42,19 @@ export const SnippetsAddPage = () => {
 								label="Title"
 								name="Title"
 								autoFocus
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								value={description}
+								onChange={handleDescription}
+								margin="normal"
+								fullWidth
+								multiline
+								disabled={isLoading}
+								id="description"
+								label="Description"
+								name="Description"
 							/>
 						</Grid>
 						<Grid item xs={12}>

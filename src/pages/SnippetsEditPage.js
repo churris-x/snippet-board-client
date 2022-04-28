@@ -17,25 +17,29 @@ export const SnippetsEditPage = () => {
 
 	const [title, setTitle] = useState('');
 	const [body, setBody] = useState('');
+	const [description, setDescription] = useState('');
 	const [syntax, setSyntax] = useState('plain_text');
 
 	const [showModal, setShowModal] = useState(false);
 
-	const handleSubmit = () => dispatch(editPost({ id: post.id, title, body, syntax }));
+	const handleSubmit = () => dispatch(editPost({ id: post.id, title, body, description, syntax }));
 	const handleUndo = () => {
 		setTitle(post.title);
 		setBody(post.body);
+		setDescription(post.description || '');
 		setSyntax(post.syntax);
 	};
 
 	const handleTitle = event => setTitle(event.target.value);
 	const handleBody = newValue => setBody(newValue);
+	const handleDescription = event => setDescription(event.target.value);
 	const handleSyntax = newValue => setSyntax(newValue);
 
 	useEffect(() => {
 		if (post) {
 			setTitle(post.title);
 			setBody(post.body);
+			setDescription(post.description || '');
 			setSyntax(post.syntax);
 		}
 	}, [post]);
@@ -110,6 +114,19 @@ export const SnippetsEditPage = () => {
 								label="Title"
 								name="Title"
 								autoFocus
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								value={description}
+								onChange={handleDescription}
+								margin="normal"
+								fullWidth
+								multiline
+								disabled={isLoading}
+								id="description"
+								label="Description"
+								name="Description"
 							/>
 						</Grid>
 						<Grid item xs={12}>

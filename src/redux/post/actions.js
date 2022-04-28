@@ -45,7 +45,7 @@ export const clearPost = () => ({ type: POST_CLEAR_BY_ID });
 
 export const createPost = post => async (dispatch, getState) => {
 	const { token } = getState().user;
-	const { title, body, syntax } = post;
+	const { title, body, description, syntax } = post;
 
 	if (!token) return;
 	if (!title || !body) return dispatch(setMessage(
@@ -58,7 +58,7 @@ export const createPost = post => async (dispatch, getState) => {
 	try {
 		const response = await axios.post(
 			`${API_URL}/posts/user`,
-			{ title, body, syntax },
+			{ title, body, description, syntax },
 			{ headers: { Authorization: `Bearer ${token}` } }
 		);
 		dispatch({ type: POST_CREATE, payload: response.data });
@@ -72,7 +72,7 @@ export const createPost = post => async (dispatch, getState) => {
 
 export const editPost = post => async (dispatch, getState) => {
 	const { token } = getState().user;
-	const { id, title, body, syntax } = post;
+	const { id, title, body, description, syntax } = post;
 
 	if (!token || !id) return;
 	if (!title || !body) return dispatch(setMessage(
@@ -85,7 +85,7 @@ export const editPost = post => async (dispatch, getState) => {
 	try {
 		const response = await axios.patch(
 			`${API_URL}/posts/user/${id}`,
-			{ title, body, syntax },
+			{ title, body, description, syntax },
 			{ headers: { Authorization: `Bearer ${token}` } }
 		);
 		dispatch({ type: POST_EDIT, payload: response.data });
