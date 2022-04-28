@@ -26,7 +26,7 @@ export const ReadEditor = ({ body = '', syntax = 'plain_text' }) => {
 	return (
 		<AceEditor
 			mode={mode}
-			theme={"monokai"}
+			theme={localStorage.getItem("theme") || 'monokai'}
 			showGutter={false}
 			height='200px'
 			width='100%'
