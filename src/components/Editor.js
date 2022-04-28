@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import AceEditor from "react-ace";
 
-import { TextField, Grid, MenuItem, ToggleButtonGroup, ToggleButton, Tooltip } from '@mui/material';
+import { TextField, Grid, MenuItem, ToggleButtonGroup, ToggleButton, Tooltip, IconButton } from '@mui/material';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode';
 import ChatIcon from '@mui/icons-material/Chat';
 import WrapTextIcon from '@mui/icons-material/WrapText';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import SaveIcon from '@mui/icons-material/Save';
 
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
@@ -28,11 +29,11 @@ languages.forEach(lang => {
 themes.forEach(theme => require(`ace-builds/src-noconflict/theme-${theme}`));
 
 export const Editor = ({ value = '', onChange = () => { }, initialSyntax = 'plain_text', onSyntaxChange = () => { } }) => {
-	const [font, setFont] = useState('16');
-	const [tabSize, setTabSize] = useState('4');
-	const [syntax, setSyntax] = useState('plain_text');
-	const [theme, setTheme] = useState('monokai');
-	const [formats, setFormats] = useState(() => ['gutter', 'numbers', 'highlight']);
+	const [font, setFont] = useState(localStorage.getItem("font") || '16');
+	const [tabSize, setTabSize] = useState(localStorage.getItem("tabSize") || '4');
+	const [syntax, setSyntax] = useState(localStorage.getItem("syntax") || 'plain_text');
+	const [theme, setTheme] = useState(localStorage.getItem("theme") || 'monokai');
+	const [formats, setFormats] = useState(() => JSON.parse(localStorage.getItem("formats")) || ['gutter', 'numbers', 'highlight']);
 
 	const handleFormat = (event, newFormats) => {
 		setFormats(newFormats);
@@ -41,6 +42,14 @@ export const Editor = ({ value = '', onChange = () => { }, initialSyntax = 'plai
 	const handleSyntax = event => {
 		setSyntax(event.target.value);
 		onSyntaxChange(event.target.value);
+	};
+
+	const handleSaveSettings = () => {
+		localStorage.setItem("font", font);
+		localStorage.setItem("tabSize", tabSize);
+		localStorage.setItem("syntax", syntax);
+		localStorage.setItem("theme", theme);
+		localStorage.setItem("formats", JSON.stringify(formats));
 	};
 
 	useEffect(() => {
@@ -143,6 +152,14 @@ export const Editor = ({ value = '', onChange = () => { }, initialSyntax = 'plai
 						<MenuItem key={i} value={i}>{i}</MenuItem>
 					))}
 				</TextField>
+			</Grid>
+
+			<Grid item>
+				<Tooltip title="Use as default" placement="bottom">
+					<IconButton onClick={handleSaveSettings}>
+						<SaveIcon />
+					</IconButton>
+				</Tooltip>
 			</Grid>
 
 			<Grid item xs={12} >
