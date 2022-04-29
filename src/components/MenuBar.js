@@ -45,9 +45,9 @@ export const MenuBar = () => {
 	const token = useSelector(selectToken);
 	const mode = useSelector(selectMode);
 
-	const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
-	const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
-	const handleOpenAuthMenu = (event) => setAnchorElAuth(event.currentTarget);
+	const handleOpenNavMenu = event => setAnchorElNav(event.currentTarget);
+	const handleOpenUserMenu = event => setAnchorElUser(event.currentTarget);
+	const handleOpenAuthMenu = event => setAnchorElAuth(event.currentTarget);
 	const handleCloseNavMenu = () => setAnchorElNav(null);
 	const handleCloseUserMenu = () => setAnchorElUser(null);
 	const handleCloseAuthMenu = () => setAnchorElAuth(null);
@@ -141,14 +141,14 @@ export const MenuBar = () => {
 						<>
 							<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 								<Button
-									sx={{ my: 2, mr: 2, color: 'white', display: 'block' }}
+									sx={{ my: 2, mr: 2, color: 'white', display: 'block', '&:hover': { backgroundColor: 'primary.light' } }}
 									onClick={() => navigate('/login')}
 								>
 									Login
 								</Button>
 								<Button
 									variant="outlined"
-									sx={{ my: 2, color: 'white', borderColor: 'white', display: 'block' }}
+									sx={{ my: 2, color: 'white', borderColor: 'white', display: 'block', '&:hover': { backgroundColor: 'primary.light', borderColor: 'white' } }}
 									onClick={() => navigate('/signup')}
 								>
 									Sign up
