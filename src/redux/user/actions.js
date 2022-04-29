@@ -18,7 +18,7 @@ export const signup = ({ name, email, password }) => async dispatch => {
 		dispatch(setMessage('success', 'Created account!'));
 	} catch (error) {
 		// console.log('Error: User login => ', error);
-		dispatch(setMessage('error', 'Failed to create account', error.response.data));
+		dispatch(setMessage('error', 'Failed to create account', error.response.data || error));
 	}
 	dispatch({ type: LOADING_STOP });
 };
@@ -41,7 +41,7 @@ export const login = ({ email, password, remember }) => async dispatch => {
 		dispatch(setMessage('success', 'Logged in, welcome back!'));
 	} catch (error) {
 		// console.log('Error: User login => ', error);
-		dispatch(setMessage('error', 'Failed to log in', error.response.data));
+		dispatch(setMessage('error', 'Failed to log in', error.response.data || error));
 	}
 	dispatch({ type: LOADING_STOP });
 };
