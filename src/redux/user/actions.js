@@ -13,11 +13,11 @@ export const signup = ({ name, email, password }) => async dispatch => {
 
 	try {
 		const response = await axios.post(`${API_URL}/users/signup`, { name, email, password });
-		console.log('Success: User login => ', response);
+		// console.log('Success: User login => ', response);
 		dispatch({ type: USER_SIGNUP });
 		dispatch(setMessage('success', 'Created account!'));
 	} catch (error) {
-		console.log('Error: User login => ', error);
+		// console.log('Error: User login => ', error);
 		dispatch(setMessage('error', 'Failed to create account', error.response.data));
 	}
 	dispatch({ type: LOADING_STOP });
@@ -40,7 +40,7 @@ export const login = ({ email, password, remember }) => async dispatch => {
 
 		dispatch(setMessage('success', 'Logged in, welcome back!'));
 	} catch (error) {
-		console.log('Error: User login => ', error);
+		// console.log('Error: User login => ', error);
 		dispatch(setMessage('error', 'Failed to log in', error.response.data));
 	}
 	dispatch({ type: LOADING_STOP });
@@ -67,7 +67,7 @@ export const tokenLogin = () => async (dispatch, getState) => {
 		dispatch(setMessage('success', 'Logged in, welcome back!'));
 
 	} catch (error) {
-		console.log('Error: User auto login => ', error);
+		// console.log('Error: User auto login => ', error);
 		dispatch({ type: USER_AUTO_LOGIN_FAILED });
 	}
 	dispatch({ type: LOADING_STOP });

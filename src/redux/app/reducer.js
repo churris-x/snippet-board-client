@@ -24,7 +24,7 @@ export const appReducer = (state = initialState, { type, payload }) => {
 				snackOpen: true,
 			};
 		case CLEAR_MESSAGE:
-			return { ...state, message: 'info' };
+			return { ...state, message: '', type: 'info' };
 		case CLOSE_MESSAGE:
 			return { ...state, snackOpen: false };
 		case TOGGLE_MODE:

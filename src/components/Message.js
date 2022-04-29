@@ -10,7 +10,8 @@ export const Message = () => {
 
 	const handleClose = () => {
 		dispatch(closeMessage())
-		if (!snackOpen) {
+		// console.log('testing handle close', snackOpen);
+		if (snackOpen) {
 			dispatch(clearMessage())
 		}
 	};

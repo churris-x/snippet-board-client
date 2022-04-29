@@ -17,7 +17,7 @@ export const fetchUserPosts = () => async (dispatch, getState) => {
 
 		dispatch({ type: POST_FETCH_USER, payload: response.data });
 	} catch (error) {
-		console.log('Error: fetch user posts => ', error);
+		// console.log('Error: fetch user posts => ', error);
 		dispatch(setMessage('error', 'Failed to fetch snippets', error.response.data));
 	}
 	dispatch({ type: LOADING_STOP });
@@ -36,7 +36,7 @@ export const fetchPostById = id => async (dispatch, getState) => {
 
 		dispatch({ type: POST_FETCH_BY_ID, payload: response.data })
 	} catch (error) {
-		console.log('Error: fetch user post by id => ', error);
+		// console.log('Error: fetch user post by id => ', error);
 		dispatch(setMessage('error', 'Failed to fetch snippet', error.response.data));
 	}
 	dispatch({ type: LOADING_STOP });
@@ -64,7 +64,7 @@ export const createPost = post => async (dispatch, getState) => {
 		dispatch({ type: POST_CREATE, payload: response.data });
 		dispatch(setMessage('success', 'Created new snippet!'));
 	} catch (error) {
-		console.log('Error: create post => ', error);
+		// console.log('Error: create post => ', error);
 		dispatch(setMessage('error', 'Failed to create snippet', error.response.data));
 	}
 	dispatch({ type: LOADING_STOP });
@@ -91,7 +91,7 @@ export const editPost = post => async (dispatch, getState) => {
 		dispatch({ type: POST_EDIT, payload: response.data });
 		dispatch(setMessage('success', 'Edited snippet!'));
 	} catch (error) {
-		console.log('Error: edit post => ', error);
+		// console.log('Error: edit post => ', error);
 		dispatch(setMessage('error', 'Failed to edit snippet', error.response.data));
 	}
 	dispatch({ type: LOADING_STOP });
@@ -112,7 +112,7 @@ export const deletePost = id => async (dispatch, getState) => {
 		dispatch({ type: POST_DELETE, payload: id });
 		dispatch(setMessage('success', 'Deleted snippet!'));
 	} catch (error) {
-		console.log('Error: delete post => ', error);
+		// console.log('Error: delete post => ', error);
 		dispatch(setMessage('error', 'Failed to delete snippet', error.response.data));
 	}
 	dispatch({ type: LOADING_STOP });

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button, TextField, Box, Typography } from '@mui/material'
 import BadgeIcon from '@mui/icons-material/Badge';
 
 import { signup } from '../redux/actions';
 import { selectIsLoading, selectMessage } from '../redux/selectors';
-import { useNavigate } from 'react-router-dom';
 
 export const SignupPage = () => {
 	const navigate = useNavigate();
