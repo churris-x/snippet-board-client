@@ -2,13 +2,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Alert, AlertTitle, Snackbar } from '@mui/material';
 
 import { selectMessage } from '../redux/selectors';
-import { closeMessage } from '../redux/actions';
+import { closeMessage, clearMessage } from '../redux/actions';
 
 export const Message = () => {
 	const dispatch = useDispatch();
 	const { type, message, snackOpen, description } = useSelector(selectMessage);
 
-	const handleClose = () => dispatch(closeMessage());
+	const handleClose = () => {
+		dispatch(closeMessage())
+		if (!snackOpen) {
+			dispatch(clearMessage())
+		}
+	};
 
 	return (
 		<Snackbar

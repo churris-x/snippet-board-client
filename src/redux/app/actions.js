@@ -1,4 +1,4 @@
-import { CLOSE_MESSAGE, SET_MESSAGE, TOGGLE_MODE } from "../types";
+import { CLEAR_MESSAGE, CLOSE_MESSAGE, SET_MESSAGE, TOGGLE_MODE } from "../types";
 
 const types = [
 	'error',
@@ -14,5 +14,6 @@ export const setMessage = (type, message, description) => ({
 });
 
 export const closeMessage = () => ({ type: CLOSE_MESSAGE });
+export const clearMessage = () => ({ type: CLEAR_MESSAGE });
 
 export const toggleMode = () => ({ type: TOGGLE_MODE });

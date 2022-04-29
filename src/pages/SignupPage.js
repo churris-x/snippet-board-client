@@ -1,14 +1,18 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button, TextField, Box, Typography } from '@mui/material'
 import BadgeIcon from '@mui/icons-material/Badge';
 
 import { signup } from '../redux/actions';
-import { selectIsLoading } from '../redux/selectors';
+import { selectIsLoading, selectMessage } from '../redux/selectors';
+import { useNavigate } from 'react-router-dom';
 
 export const SignupPage = () => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const isLoading = useSelector(selectIsLoading);
+	const { type } = useSelector(selectMessage);
 
 	const handleSubmit = event => {
 		event.preventDefault();
@@ -20,6 +24,10 @@ export const SignupPage = () => {
 		};
 		dispatch(signup(data));
 	};
+
+	useEffect(() => {
+		if (type === 'success') navigate('/login');
+	}, [type]);
 
 	return (
 		<Box sx={{ m: 1, mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

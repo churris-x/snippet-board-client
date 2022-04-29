@@ -5,7 +5,7 @@ const initialState = {
 	message: '',
 	description: '',
 	snackOpen: false,
-	type: 'success',
+	type: 'info',
 	mode: localStorage.getItem("mode") || 'light',
 };
 
@@ -24,7 +24,7 @@ export const appReducer = (state = initialState, { type, payload }) => {
 				snackOpen: true,
 			};
 		case CLEAR_MESSAGE:
-			return { ...state, message: '' };
+			return { ...state, message: 'info' };
 		case CLOSE_MESSAGE:
 			return { ...state, snackOpen: false };
 		case TOGGLE_MODE:
