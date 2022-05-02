@@ -50,7 +50,7 @@ export const SnippetsEditPage = () => {
 	}, []);
 
 	return (
-		<Container sx={{ mt: 8, maxWidth: { xs: "md", md: 'lg' } }}>
+		<Container sx={{ m: 0, p: 0, mt: 8, maxWidth: { md: 'lg' } }}>
 			<Modal
 				open={showModal}
 				onClose={() => setShowModal(false)}
@@ -96,7 +96,7 @@ export const SnippetsEditPage = () => {
 					</Box>
 				</Box>
 			</Modal>
-			<Paper sx={{ m: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+			<Paper sx={{ m: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}>
 				<Typography component="h1" variant="h4">
 					Edit snippet
 				</Typography>

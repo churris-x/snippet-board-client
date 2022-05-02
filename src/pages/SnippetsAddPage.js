@@ -23,8 +23,8 @@ export const SnippetsAddPage = () => {
 	const handleSyntax = newValue => setSyntax(newValue);
 
 	return (
-		<Container sx={{ mt: 8, maxWidth: { xs: "md", md: 'lg' } }}>
-			<Paper sx={{ m: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+		<Container sx={{ m: 0, p: 0, mt: 8, maxWidth: { md: 'lg' } }}>
+			<Paper sx={{ m: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}>
 				<Typography component="h1" variant="h4">
 					Create snippet
 				</Typography>
