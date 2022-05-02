@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Container, Typography, Box, TextField, Paper, Grid, Modal } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -12,6 +12,7 @@ import { selectIsLoading, selectPostById } from '../redux/selectors';
 import { Editor } from '../components';
 
 export const SnippetsEditPage = () => {
+	const navigate = useNavigate();
 	const postId = useParams().id;
 	const dispatch = useDispatch();
 
@@ -25,7 +26,11 @@ export const SnippetsEditPage = () => {
 
 	const [showModal, setShowModal] = useState(false);
 
-	const handleSubmit = () => dispatch(editPost({ id: post.id, title, body, description, syntax }));
+	const handleDelete = () => {
+		setShowModal(false);
+		dispatch(deletePost(post.id, navigate));
+	};
+	const handleSubmit = () => dispatch(editPost({ id: post.id, title, body, description, syntax }, navigate));
 	const handleUndo = () => {
 		setTitle(post.title);
 		setBody(post.body);
@@ -79,7 +84,7 @@ export const SnippetsEditPage = () => {
 					</Typography>
 					<Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between' }} >
 						<Button
-							onClick={() => dispatch(deletePost(post.id))}
+							onClick={handleDelete}
 							variant="contained"
 							disabled={isLoading}
 							sx={{

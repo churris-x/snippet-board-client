@@ -3,7 +3,7 @@ import { LOADING_START, LOADING_STOP, POST_FETCH_USER, USER_AUTO_LOGIN, USER_AUT
 import { API_URL } from '../../constants'
 import { setMessage } from '../actions';
 
-export const signup = ({ name, email, password }) => async dispatch => {
+export const signup = ({ name, email, password }, navigate) => async dispatch => {
 	if (!name || !email || !password) return dispatch(setMessage(
 		'error',
 		'Missign required field!'
@@ -16,6 +16,7 @@ export const signup = ({ name, email, password }) => async dispatch => {
 		// console.log('Success: User login => ', response);
 		dispatch({ type: USER_SIGNUP });
 		dispatch(setMessage('success', 'Created account!'));
+		navigate('/login');
 	} catch (error) {
 		// console.log('Error: User login => ', error);
 		dispatch(setMessage('error', 'Failed to create account', error.response.data || error));

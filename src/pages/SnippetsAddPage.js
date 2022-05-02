@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Container, Typography, Box, TextField, Paper, Grid } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -9,6 +10,7 @@ import { selectIsLoading } from '../redux/selectors';
 import { Editor } from '../components';
 
 export const SnippetsAddPage = () => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const isLoading = useSelector(selectIsLoading);
 
@@ -17,7 +19,7 @@ export const SnippetsAddPage = () => {
 	const [body, setBody] = useState('');
 	const [syntax, setSyntax] = useState('plain_text');
 
-	const handleSubmit = () => dispatch(createPost({ title, body, description, syntax }));
+	const handleSubmit = () => dispatch(createPost({ title, body, description, syntax }, navigate));
 	const handleTitle = event => setTitle(event.target.value);
 	const handleDescription = event => setDescription(event.target.value);
 	const handleBody = newValue => setBody(newValue);

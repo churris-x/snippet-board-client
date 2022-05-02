@@ -22,12 +22,8 @@ export const SignupPage = () => {
 			email: form.get('email'),
 			password: form.get('password'),
 		};
-		dispatch(signup(data));
+		dispatch(signup(data, navigate));
 	};
-
-	useEffect(() => {
-		if (type === 'success') navigate('/login');
-	}, [type]);
 
 	return (
 		<Box sx={{ m: 1, mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

@@ -43,7 +43,7 @@ export const fetchPostById = id => async (dispatch, getState) => {
 };
 export const clearPost = () => ({ type: POST_CLEAR_BY_ID });
 
-export const createPost = post => async (dispatch, getState) => {
+export const createPost = (post, navigate) => async (dispatch, getState) => {
 	const { token } = getState().user;
 	const { title, body, description, syntax } = post;
 
@@ -62,6 +62,7 @@ export const createPost = post => async (dispatch, getState) => {
 			{ headers: { Authorization: `Bearer ${token}` } }
 		);
 		dispatch({ type: POST_CREATE, payload: response.data });
+		navigate('/snippets/user');
 		dispatch(setMessage('success', 'Created new snippet!'));
 	} catch (error) {
 		// console.log('Error: create post => ', error);
@@ -70,7 +71,7 @@ export const createPost = post => async (dispatch, getState) => {
 	dispatch({ type: LOADING_STOP });
 };
 
-export const editPost = post => async (dispatch, getState) => {
+export const editPost = (post, navigate) => async (dispatch, getState) => {
 	const { token } = getState().user;
 	const { id, title, body, description, syntax } = post;
 
@@ -89,6 +90,7 @@ export const editPost = post => async (dispatch, getState) => {
 			{ headers: { Authorization: `Bearer ${token}` } }
 		);
 		dispatch({ type: POST_EDIT, payload: response.data });
+		navigate('/snippets/user');
 		dispatch(setMessage('success', 'Edited snippet!'));
 	} catch (error) {
 		// console.log('Error: edit post => ', error);
@@ -97,7 +99,7 @@ export const editPost = post => async (dispatch, getState) => {
 	dispatch({ type: LOADING_STOP });
 };
 
-export const deletePost = id => async (dispatch, getState) => {
+export const deletePost = (id, navigate) => async (dispatch, getState) => {
 	const { token } = getState().user;
 
 	if (!token || !id) return;
@@ -110,6 +112,7 @@ export const deletePost = id => async (dispatch, getState) => {
 			{ headers: { Authorization: `Bearer ${token}` } }
 		);
 		dispatch({ type: POST_DELETE, payload: id });
+		navigate('/snippets/user');
 		dispatch(setMessage('success', 'Deleted snippet!'));
 	} catch (error) {
 		// console.log('Error: delete post => ', error);
