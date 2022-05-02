@@ -25,6 +25,7 @@ export const SnippetsEditPage = () => {
 	const [syntax, setSyntax] = useState('plain_text');
 
 	const [showModal, setShowModal] = useState(false);
+	const [showUndo, setShowUndo] = useState(false);
 
 	const handleDelete = () => {
 		setShowModal(false);
@@ -36,6 +37,7 @@ export const SnippetsEditPage = () => {
 		setBody(post.body);
 		setDescription(post.description || '');
 		setSyntax(post.syntax);
+		setShowUndo(false);
 	};
 
 	const handleTitle = event => setTitle(event.target.value);
@@ -51,6 +53,15 @@ export const SnippetsEditPage = () => {
 			setSyntax(post.syntax);
 		}
 	}, [post]);
+
+	useEffect(() => {
+		if (post && (
+			title !== post.title ||
+			body !== post.body ||
+			description !== post.description ||
+			syntax !== post.syntax
+		)) setShowUndo(true);
+	}, [title, body, description, syntax]);
 
 	useEffect(() => {
 		dispatch(fetchPostById(postId));
@@ -168,7 +179,7 @@ export const SnippetsEditPage = () => {
 								onClick={handleUndo}
 								variant="outlined"
 								disabled={isLoading}
-								sx={{ mx: 2 }}
+								sx={{ mx: 2, display: showUndo ? null : 'none' }}
 							>
 								<Typography sx={{ display: { xs: 'none', sm: 'inline' } }}>
 									Undo
