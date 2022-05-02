@@ -5,7 +5,7 @@ const initialState = {
 	message: '',
 	description: '',
 	snackOpen: false,
-	type: 'info',
+	type: 'success',
 	mode: localStorage.getItem("mode") || 'light',
 };
 

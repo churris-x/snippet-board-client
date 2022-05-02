@@ -1,18 +1,16 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button, TextField, Box, Typography } from '@mui/material'
 import BadgeIcon from '@mui/icons-material/Badge';
 
 import { signup } from '../redux/actions';
-import { selectIsLoading, selectMessage } from '../redux/selectors';
+import { selectIsLoading } from '../redux/selectors';
 
 export const SignupPage = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const isLoading = useSelector(selectIsLoading);
-	const { type } = useSelector(selectMessage);
 
 	const handleSubmit = event => {
 		event.preventDefault();
