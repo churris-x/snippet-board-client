@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Container, Typography, Box, TextField, Paper, Grid } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 import { createPost } from '../redux/actions';
 import { selectIsLoading } from '../redux/selectors';
@@ -72,7 +73,13 @@ export const SnippetsAddPage = () => {
 						disabled={isLoading}
 						sx={{ mt: 3, mb: 2 }}
 					>
-						Create Snippet
+						<Typography sx={{ display: { xs: 'none', sm: 'inline' } }}>
+							Create Snippet
+						</Typography>
+						<AddIcon
+							sx={{ display: { xs: 'inline', sm: 'none' } }}
+							aria-label="create snippet"
+						/>
 					</Button>
 				</Box>
 			</Paper>

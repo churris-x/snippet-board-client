@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Container, Typography, Box, TextField, Paper, Grid, Modal } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import UndoIcon from '@mui/icons-material/Undo';
+import EditIcon from '@mui/icons-material/Edit';
 
 import { clearPost, deletePost, editPost, fetchPostById } from '../redux/actions';
 import { selectIsLoading, selectPostById } from '../redux/selectors';
@@ -62,11 +65,11 @@ export const SnippetsEditPage = () => {
 					top: '50%',
 					left: '50%',
 					transform: 'translate(-50%, -50%)',
-					width: 400,
+					maxWidth: 400,
 					bgcolor: 'background.paper',
 					boxShadow: 24,
 					borderRadius: '4px',
-					p: 4,
+					p: 3
 				}}>
 					<Typography id="modal-modal-title" variant="h6" component="h2">
 						Confirm delete
@@ -148,22 +151,41 @@ export const SnippetsEditPage = () => {
 									marginRight: 'auto'
 								}}
 							>
-								Delete Snippet
+								<Typography sx={{ display: { xs: 'none', sm: 'inline' } }}>
+									Delete
+								</Typography>
+								<DeleteIcon
+									sx={{ display: { xs: 'inline', sm: 'none' } }}
+									aria-label="Delete Snippet"
+								/>
 							</Button>
 							<Button
 								onClick={handleUndo}
 								variant="outlined"
 								disabled={isLoading}
-								sx={{ mr: 2 }}
+								sx={{ mx: 2 }}
 							>
-								Undo
+								<Typography sx={{ display: { xs: 'none', sm: 'inline' } }}>
+									Undo
+								</Typography>
+								<UndoIcon
+									sx={{ display: { xs: 'inline', sm: 'none' } }}
+									aria-label="Undo changes"
+								/>
 							</Button>
 							<Button
 								onClick={handleSubmit}
 								variant="contained"
 								disabled={isLoading}
 							>
-								Update
+								<Typography sx={{ display: { xs: 'none', sm: 'inline' } }}>
+									Update
+								</Typography>
+								<EditIcon
+									sx={{ display: { xs: 'inline', sm: 'none' } }}
+									aria-label="Update snippet"
+								/>
+
 							</Button>
 						</Grid>
 					</Grid>
