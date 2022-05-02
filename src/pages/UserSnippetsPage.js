@@ -15,8 +15,7 @@ export const UserSnippetsPage = () => {
 	const dispatch = useDispatch();
 
 	const token = useSelector(selectToken);
-	// const isLoading = useSelector(selectIsLoading);
-	const isLoading = true;
+	const isLoading = useSelector(selectIsLoading);
 	const posts = useSelector(selectUserPosts);
 
 	const handleNew = () => navigate('/snippets/user/add');
