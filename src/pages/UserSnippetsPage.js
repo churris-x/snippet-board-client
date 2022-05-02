@@ -15,7 +15,8 @@ export const UserSnippetsPage = () => {
 	const dispatch = useDispatch();
 
 	const token = useSelector(selectToken);
-	const isLoading = useSelector(selectIsLoading);
+	// const isLoading = useSelector(selectIsLoading);
+	const isLoading = true;
 	const posts = useSelector(selectUserPosts);
 
 	const handleNew = () => navigate('/snippets/user/add');
@@ -25,8 +26,8 @@ export const UserSnippetsPage = () => {
 	}, []);
 
 	return (
-		<Container sx={{ flexDirection: 'row' }}>
-			{isLoading ? <CircularProgress sx={{ alignSelf: 'center' }} /> :
+		<Container sx={{ flexDirection: isLoading ? 'column' : 'row', display: isLoading ? 'flex' : null }}>
+			{isLoading ? <CircularProgress sx={{ alignSelf: 'center', mt: 4 }} /> :
 				<Grid container spacing={4} my={4}>
 					{token &&
 						<Grid item>
