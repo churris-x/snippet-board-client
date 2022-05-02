@@ -53,7 +53,7 @@ export const SnippetsEditPage = () => {
 	}, []);
 
 	return (
-		<Container sx={{ m: 0, p: 0, mt: 8, maxWidth: { md: 'lg' } }}>
+		<Container sx={{ m: 'auto', p: 0, mt: 8, maxWidth: { md: 'lg' } }}>
 			<Modal
 				open={showModal}
 				onClose={() => setShowModal(false)}
