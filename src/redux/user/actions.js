@@ -52,7 +52,7 @@ export const logout = () => dispatch => {
 	dispatch({ type: POST_FETCH_USER, payload: [] });
 };
 
-export const tokenLogin = () => async (dispatch, getState) => {
+export const tokenLogin = (navigate) => async (dispatch, getState) => {
 	const { token } = getState().user;
 	if (!token) return;
 
@@ -69,7 +69,11 @@ export const tokenLogin = () => async (dispatch, getState) => {
 
 	} catch (error) {
 		// console.log('Error: User auto login => ', error);
-		dispatch({ type: USER_AUTO_LOGIN_FAILED });
+		navigate('/login');
+		dispatch(setMessage('error', 'Please login again'));
+		dispatch({ type: USER_LOGOUT });
+		dispatch({ type: POST_FETCH_USER, payload: [] });
+
 	}
 	dispatch({ type: LOADING_STOP });
 

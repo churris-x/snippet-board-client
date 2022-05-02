@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,11 +12,12 @@ import { Message, MenuBar } from './components';
 import { light, dark } from './constants';
 
 function App() {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const mode = useSelector(selectMode);
 
 	useEffect(() => {
-		dispatch(tokenLogin());
+		dispatch(tokenLogin(navigate));
 	}, []);
 
 	const theme = useMemo(() => createTheme({

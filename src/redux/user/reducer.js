@@ -1,4 +1,4 @@
-import { USER_AUTO_LOGIN, USER_AUTO_LOGIN_FAILED, USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from '../types';
+import { USER_AUTO_LOGIN, USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from '../types';
 
 const initialState = {
 	token: localStorage.getItem("token") || '',
@@ -18,9 +18,6 @@ export const userReducer = (state = initialState, { type, payload }) => {
 			return { ...state, ...initialState, token: '' };
 		case USER_AUTO_LOGIN:
 			return { ...state, ...payload };
-		case USER_AUTO_LOGIN_FAILED:
-			localStorage.removeItem("token");
-			return { ...state, token: '' };
 		default:
 			return state;
 	}
