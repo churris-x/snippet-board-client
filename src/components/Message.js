@@ -10,10 +10,10 @@ export const Message = () => {
 
 	const handleClose = () => {
 		dispatch(closeMessage())
+		// if (snackOpen) {
 		// console.log('testing handle close', snackOpen);
-		if (snackOpen) {
-			dispatch(clearMessage())
-		}
+		dispatch(clearMessage())
+		// }
 	};
 
 	return (
@@ -22,7 +22,7 @@ export const Message = () => {
 			onClose={handleClose}
 			autoHideDuration={4000}
 		// anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-		>
+		>{snackOpen &&
 			<Alert onClose={handleClose} severity={type} sx={{ width: '100%', boxShadow: 2 }}>
 				{description
 					? <>
@@ -33,7 +33,7 @@ export const Message = () => {
 					</>
 					: message
 				}
-			</Alert>
+			</Alert>}
 		</Snackbar>
 	)
 };
