@@ -109,7 +109,7 @@ export const MenuBar = () => {
 							</Button>
 						))}
 					</Box>
-					<SearchBar />
+					{/* <SearchBar /> */}
 					{token ?
 						<Box sx={{ flexGrow: 0 }}>
 							<Tooltip title="Open options">
