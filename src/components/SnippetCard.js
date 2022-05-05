@@ -102,17 +102,18 @@ export const SnippetCard = ({ id, title, body, description, syntax, updatedAt, u
 						<ContentCopyIcon />
 					</IconButton>
 				</Tooltip>
-				<Box sx={{ display: 'flex', flexGrow: 1, justifyContent: 'flex-end' }}>
-					<Tooltip title="Details" placement="bottom">
-						<IconButton
-							disabled={details}
-							onClick={() => navigate(`/snippets/${id}/details`)}
-							aria-label="Go to details"
-						>
-							<LaunchIcon />
-						</IconButton>
-					</Tooltip>
-				</Box>
+				{details &&
+					<Box sx={{ display: 'flex', flexGrow: 1, justifyContent: 'flex-end' }}>
+						<Tooltip title="Details" placement="bottom">
+							<IconButton
+								onClick={() => navigate(`/snippets/${id}/details`)}
+								aria-label="Go to details"
+							>
+								<LaunchIcon />
+							</IconButton>
+						</Tooltip>
+					</Box>
+				}
 			</CardActions>
 		</Card >
 	);
