@@ -64,7 +64,7 @@ export const SnippetCard = ({ id, title, body, description, syntax, updatedAt, u
 					</ExpandMore>
 				}
 				// title={expanded ? title : title.length > 24 ? title.substring(0, 24).concat('…') : title}
-				title={<Typography width={280} noWrap={!expanded} variant="h5">{title}</Typography>}
+				title={<Typography width={user.id === userId ? 280 : 220} noWrap={!expanded} variant="h5">{title}</Typography>}
 				subheader={moment(updatedAt).format('Do MMMM YYYY')}
 			/>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>

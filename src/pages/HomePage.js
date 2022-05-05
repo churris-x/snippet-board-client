@@ -31,7 +31,7 @@ export const HomePage = () => {
 					console.log( i );
 	}
 }`}
-						description=''
+						description={'The FizzBuzz problem is a classic test given in coding interviews. The task is simple: Print integers 1 to N, but print “Fizz” if an integer is divisible by 3, “Buzz” if an integer is divisible by 5, and “FizzBuzz” if an integer is divisible by both 3 and 5'}
 						syntax='javascript'
 						updatedAt='2022-05-04 05:23:19.231+00'
 						userId={NaN}
