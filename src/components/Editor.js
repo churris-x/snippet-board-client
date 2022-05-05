@@ -155,7 +155,7 @@ export const Editor = ({ value = '', onChange = () => { }, initialSyntax = 'plai
 			</Grid>
 
 			<Grid item>
-				<Tooltip title="Use as default" placement="bottom">
+				<Tooltip title="Save preferences" placement="bottom">
 					<IconButton onClick={handleSaveSettings}>
 						<SaveIcon />
 					</IconButton>
