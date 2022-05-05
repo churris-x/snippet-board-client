@@ -51,7 +51,7 @@ export const SnippetCard = ({ id, title, body, description, syntax, updatedAt, u
 		<Card sx={{ width: 345 }}>
 			<CardHeader
 				avatar={user.id === userId ? null :
-					<Avatar sx={{ bgcolor: red[500] }} aria-label="user" />
+					<Avatar sx={{ bgcolor: 'secondary.light' }} aria-label="user" />
 				}
 				action={
 					<ExpandMore

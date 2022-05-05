@@ -1,4 +1,6 @@
 import { Container, Card, Typography, CardContent, Box, Grid } from '@mui/material';
+import { grey } from '@mui/material/colors';
+
 import { SnippetCard } from '../components';
 
 export const HomePage = () => {
@@ -7,10 +9,10 @@ export const HomePage = () => {
 			<Grid container spacing={4} my={4}>
 				<Grid item>
 					<Box sx={{ maxWidth: 'sm' }}>
-						<Typography component='h2' variant="h3">
+						<Typography component='h2' variant="h3" sx={{ /* color: 'primary.main', */ fontWeight: 'bold' }}>
 							Write once, paste everywhere
 						</Typography>
-						<Typography sx={{ fontSize: 20, color: 'rgba(0,0,0,0.6)' }}>
+						<Typography sx={{ fontSize: 20, color: grey[600] }}>
 							Find, copy and use your ideas everywhere. This is a "snippet" manager or clipboard to keep your most used code at your fingertips.
 						</Typography>
 					</Box>
@@ -32,7 +34,7 @@ export const HomePage = () => {
 						description=''
 						syntax='javascript'
 						updatedAt='2022-05-04 05:23:19.231+00'
-						userId={0}
+						userId={NaN}
 						details={false}
 					/>
 				</Grid>
