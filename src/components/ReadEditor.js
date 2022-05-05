@@ -38,6 +38,9 @@ export const ReadEditor = ({ body = '', syntax = 'plain_text' }) => {
 			readOnly={true}
 			value={body}
 			editorProps={{ $blockScrolling: true }}
+			setOptions={{
+				tabSize: localStorage.getItem("tabSize") || '4',
+			}}
 		/>
 	);
 };
