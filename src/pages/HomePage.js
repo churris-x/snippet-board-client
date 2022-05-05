@@ -33,6 +33,7 @@ export const HomePage = () => {
 						syntax='javascript'
 						updatedAt='2022-05-04 05:23:19.231+00'
 						userId={0}
+						details={false}
 					/>
 				</Grid>
 				<Grid item>

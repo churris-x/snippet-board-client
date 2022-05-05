@@ -35,7 +35,7 @@ const ExpandMore = styled((props) => {
 	}),
 }));
 
-export const SnippetCard = ({ id, title, body, description, syntax, updatedAt, userId }) => {
+export const SnippetCard = ({ id, title, body, description, syntax, updatedAt, userId, details = true }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
@@ -105,6 +105,7 @@ export const SnippetCard = ({ id, title, body, description, syntax, updatedAt, u
 				<Box sx={{ display: 'flex', flexGrow: 1, justifyContent: 'flex-end' }}>
 					<Tooltip title="Details" placement="bottom">
 						<IconButton
+							disabled={details}
 							onClick={() => navigate(`/snippets/${id}/details`)}
 							aria-label="Go to details"
 						>
