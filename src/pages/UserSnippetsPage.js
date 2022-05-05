@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Container, CircularProgress, Grid, CardActionArea, Card, CardHeader } from '@mui/material';
+import { Container, CircularProgress, Grid, CardActionArea, Card, CardHeader, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 import { selectIsLoading, selectToken, selectUserPosts } from '../redux/selectors';
@@ -46,13 +46,18 @@ export const UserSnippetsPage = () => {
 							</Card>
 						</Grid>
 					}
-					{!posts.length
+					{!posts.length && token
 						? <Grid item>Couldn't find any posts!</Grid>
 						: posts.map(post => (
 							<Grid item key={post.id}>
 								<SnippetCard {...post} />
 							</Grid>
 						))}
+					{!posts.length && !token &&
+						<Grid item>
+							You need to be logged in to see your posts
+						</Grid>
+					}
 				</Grid>
 			}
 		</Container>
