@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container, CircularProgress, Grid, CardActionArea, Card, CardHeader, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
-import { selectIsLoading, selectToken, selectUserPosts } from '../redux/selectors';
+import { selectIsLoading, selectPostSeach, selectToken, selectUserPosts } from '../redux/selectors';
 import { fetchUserPosts } from '../redux/actions';
 
 import { SnippetCard } from '../components';
@@ -17,6 +17,7 @@ export const UserSnippetsPage = () => {
 	const token = useSelector(selectToken);
 	const isLoading = useSelector(selectIsLoading);
 	const posts = useSelector(selectUserPosts);
+	const search = useSelector(selectPostSeach);
 
 	const handleNew = () => navigate('/snippets/user/add');
 
@@ -48,7 +49,7 @@ export const UserSnippetsPage = () => {
 					}
 					{!posts.length && token
 						? <Grid item>Couldn't find any posts!</Grid>
-						: posts.map(post => (
+						: posts.filter(i => i.title.toLowerCase().includes(search.toLowerCase())).map(post => (
 							<Grid item key={post.id}>
 								<SnippetCard {...post} />
 							</Grid>

@@ -1,6 +1,9 @@
+import { useDispatch } from 'react-redux';
 import { styled, alpha } from '@mui/material/styles';
 import { InputBase } from '@mui/material';
-import { Search as SearchIcon } from '@mui/icons-material';
+import SearchIcon from '@mui/icons-material/Search';
+
+import { searchPost } from '../redux/actions';
 
 const Search = styled('div')(({ theme }) => ({
 	position: 'relative',
@@ -42,8 +45,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	},
 }));
 
-export const SearchBar = () => {
 
+export const SearchBar = () => {
+	const dispatch = useDispatch()
+
+	const handleSearch = event => dispatch(searchPost(event.target.value));
 	return (
 		<Search>
 			<SearchIconWrapper>
@@ -52,6 +58,8 @@ export const SearchBar = () => {
 			<StyledInputBase
 				placeholder="Search…"
 				inputProps={{ 'aria-label': 'search' }}
+				autoFocus
+				onChange={handleSearch}
 			/>
 		</Search>
 	);
