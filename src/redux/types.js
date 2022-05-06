@@ -22,4 +22,5 @@ export const POST_CREATE = 'POST_CREATE';
 export const POST_EDIT = 'POST_EDIT';
 export const POST_DELETE = 'POST_DELETE';
 export const POST_ADD_STAR = 'POST_ADD_STAR';
+export const POST_SEARCH = 'POST_SEARCH';
 

@@ -1,7 +1,8 @@
-import { POST_CLEAR_BY_ID, POST_CREATE, POST_DELETE, POST_EDIT, POST_FETCH_BY_ID, POST_FETCH_USER } from '../types';
+import { POST_CLEAR_BY_ID, POST_CREATE, POST_DELETE, POST_EDIT, POST_FETCH_BY_ID, POST_FETCH_USER, POST_SEARCH } from '../types';
 
 const initialState = {
 	userPosts: [],
+	postSearch: '',
 	postById: null,
 };
 
@@ -19,6 +20,8 @@ export const postReducer = (state = initialState, { type, payload }) => {
 			return { ...state, userPosts: [...state.userPosts.map(i => i.id === payload.id ? payload : i)] }
 		case POST_DELETE:
 			return { ...state, userPosts: [...state.userPosts.filter(i => i.id !== payload)] }
+		case POST_SEARCH:
+			return { ...state, postSearch: payload }
 		default:
 			return state;
 	}

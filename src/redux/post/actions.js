@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOADING_START, LOADING_STOP, POST_CLEAR_BY_ID, POST_CREATE, POST_DELETE, POST_EDIT, POST_FETCH_BY_ID, POST_FETCH_USER } from '../types';
+import { LOADING_START, LOADING_STOP, POST_CLEAR_BY_ID, POST_CREATE, POST_DELETE, POST_EDIT, POST_FETCH_BY_ID, POST_FETCH_USER, POST_SEARCH } from '../types';
 import { API_URL } from '../../constants'
 import { setMessage } from '../actions';
 
@@ -120,3 +120,5 @@ export const deletePost = (id, navigate) => async (dispatch, getState) => {
 	}
 	dispatch({ type: LOADING_STOP });
 };
+
+export const searchPost = search => ({ type: POST_SEARCH, payload: search });
