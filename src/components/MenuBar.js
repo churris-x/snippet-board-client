@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -41,6 +41,7 @@ export const MenuBar = () => {
 	const [anchorElAuth, setAnchorElAuth] = useState(null);
 
 	const navigate = useNavigate();
+	const location = useLocation();
 	const dispatch = useDispatch();
 	const token = useSelector(selectToken);
 	const mode = useSelector(selectMode);
@@ -109,7 +110,9 @@ export const MenuBar = () => {
 							</Button>
 						))}
 					</Box>
-					{/* <SearchBar /> */}
+					{location.pathname === '/snippets/user' &&
+						<SearchBar />
+					}
 					{token ?
 						<Box sx={{ flexGrow: 0 }}>
 							<Tooltip title="Open options">
