@@ -10,6 +10,11 @@ This is a snippet board / manager, that is intented to help me organized my most
 
 Currently there are only private snippets, so an account is required, but having public ones is definetly on [my todo lsit](https://github.com/users/churris-x/projects/2?fullscreen=true).
 
+
+## Screenshot
+
+<img src="public/largePreview.png?raw=true" alt="website screenshot">
+
 ## Wireframe
 
 ![Wireframe image](README/wireframe.svg?raw=true)
