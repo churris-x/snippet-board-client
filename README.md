@@ -2,7 +2,7 @@
 
 React frontend for my Snippet Board website. [Backend server](https://github.com/churris-x/snippet-board-server)
 
-Link to the [deployed version](https://resplendent-sopapillas-bd002a.netlify.app/) or scan this qr code with your phone:
+Link to the [deployed version](https://snipits.netlify.app) or scan this qr code with your phone:
 
 <img src="README/QR_green.png?raw=true" width="25%" alt="QR code to website">
 
