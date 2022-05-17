@@ -7,3 +7,4 @@ export * from './SearchBar';
 export * from './SnippetCard';
 export * from './Editor';
 export * from './ReadEditor';
+export * from './NewSnippetCard';

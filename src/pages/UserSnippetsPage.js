@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Container, CircularProgress, Grid, CardActionArea, Card, CardHeader, Button } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 
 import { selectIsLoading, selectPostSeach, selectToken, selectUserPosts } from '../redux/selectors';
 import { fetchUserPosts } from '../redux/actions';
 
-import { SnippetCard } from '../components';
+import { NewSnippetCard, SnippetCard } from '../components';
 
 export const UserSnippetsPage = () => {
 	const navigate = useNavigate();
@@ -31,20 +30,7 @@ export const UserSnippetsPage = () => {
 				<Grid container spacing={4} my={4}>
 					{token &&
 						<Grid item>
-							<Card sx={{ width: 345, height: 344 }}>
-								<CardActionArea onClick={handleNew} sx={{
-									height: 'inherit',
-									display: 'flex',
-									justifyContent: 'flex-start',
-									flexDirection: 'column'
-								}}>
-									<CardHeader
-										title='New snippet'
-										sx={{ alignSelf: 'flex-start' }}
-									/>
-									<AddIcon sx={{ width: 40, height: 40, alignSelf: 'center', flexGrow: 1, mb: 8 }} />
-								</CardActionArea>
-							</Card>
+							<NewSnippetCard onClick={handleNew} />
 						</Grid>
 					}
 					{!posts.length && token
