@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import {
 	Card, CardHeader, CardMedia, CardContent, CardActions,
-	Collapse, Avatar, IconButton, Typography, Box, Tooltip
+	Collapse, Avatar, IconButton, Typography, Box, Tooltip, Chip
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import StarIcon from '@mui/icons-material/Star';
@@ -35,7 +35,7 @@ const ExpandMore = styled((props) => {
 	}),
 }));
 
-export const SnippetCard = ({ id, title, body, description, syntax, updatedAt, userId, details = true }) => {
+export const SnippetCard = ({ id, title, body, description, syntax, syntaxColor, updatedAt, userId, details = true }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
@@ -65,7 +65,11 @@ export const SnippetCard = ({ id, title, body, description, syntax, updatedAt, u
 				}
 				// title={expanded ? title : title.length > 24 ? title.substring(0, 24).concat('…') : title}
 				title={<Typography width={user.id === userId ? 280 : 220} noWrap={!expanded} variant="h5">{title}</Typography>}
-				subheader={moment(updatedAt).format('Do MMMM YYYY')}
+				subheader={
+					<>
+						{moment(updatedAt).format('Do MMMM YYYY')}
+						<Chip label={syntax === 'plain_text' ? 'text' : syntax} size="small" sx={{ backgroundColor: syntaxColor, ml: 1 }} />
+					</>}
 			/>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>
 				<CardContent>
