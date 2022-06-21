@@ -11,6 +11,7 @@ export const NewSnippetCard = () => {
 			<Fab color="primary" aria-label="add" onClick={handleNew} sx={{
 				position: 'fixed',
 				bottom: 32,
+				// right: 32,
 				left: 'calc(50% - 28px)',
 				display: { xs: 'flex', sm: 'none' }
 			}}>

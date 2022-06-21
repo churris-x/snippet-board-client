@@ -43,6 +43,7 @@ export const SnippetCard = ({ id, title, body, description, syntax, updatedAt, u
 
 	const handleExpandClick = () => setExpanded(!expanded);
 	const handleCopy = () => {
+		// try catch this?
 		navigator.clipboard.writeText(body);
 		dispatch(setMessage('success', 'Copied snippet'));
 	};
