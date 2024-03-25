@@ -23,7 +23,9 @@ function App() {
     const dispatch = useDispatch();
     const mode = useSelector(selectMode);
 
-    useEffect(() => dispatch(tokenLogin(navigate)), []);
+    useEffect(() => {
+        dispatch(tokenLogin(navigate));
+    }, []);
 
     // prettier-ignore
     const theme = useMemo(() => createTheme({ palette: {
