@@ -10,6 +10,7 @@ import { tokenLogin } from './redux/actions';
 import {
     HomePage,
     LoginPage,
+    NotFoundPage,
     SignupPage,
     SnippetsAddPage,
     SnippetsEditPage,
@@ -47,6 +48,7 @@ function App() {
                 <Route path='/snippets/:id/details' element={<SnippetsEditPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/signup' element={<SignupPage />} />
+                <Route path='*' element={<NotFoundPage />} />
             </Routes>
         </ThemeProvider>
     );
