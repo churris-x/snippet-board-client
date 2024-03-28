@@ -37,30 +37,26 @@ export const signup =
         dispatch({ type: LOADING_STOP });
     };
 
-export const login =
-    ({ email, password, remember }) =>
-    async dispatch => {
-        if (!email || !password)
-            return dispatch(setMessage('error', 'User name and password required!'));
+// prettier-ignore
+export const login = ({ email, password, remember }) => async dispatch => {
+    if (!email || !password) 
+        return dispatch(setMessage('error', 'User name and password required!'));
 
-        dispatch({ type: LOADING_START });
+    dispatch({ type: LOADING_START });
 
-        try {
-            const response = await axios.post(`${API_URL}/users/login`, {
-                email,
-                password,
-            });
-            const { token } = response.data;
+    try {
+        const response = await axios.post(`${API_URL}/users/login`, { email, password });
+        const { token } = response.data;
 
-            if (remember) localStorage.setItem('token', token);
-            dispatch({ type: USER_LOGIN, payload: response.data });
+        if (remember) localStorage.setItem('token', token);
+        dispatch({ type: USER_LOGIN, payload: response.data });
 
-            dispatch(setMessage('success', 'Logged in, welcome back!'));
-        } catch (error) {
-            // console.log('Error: User login => ', error);
-            dispatch(setMessage('error', 'Failed to log in', error.response.data || error));
-        }
-        dispatch({ type: LOADING_STOP });
+        dispatch(setMessage('success', 'Logged in, welcome back!'));
+    } catch (error) {
+        // console.log('Error: User login => ', error);
+        dispatch(setMessage('error', 'Failed to log in', error.response.data || error));
+    }
+    dispatch({ type: LOADING_STOP });
     };
 
 export const logout = () => dispatch => {
